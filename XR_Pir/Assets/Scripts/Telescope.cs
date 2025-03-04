@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Rendering;
 using UnityEngine;
 
 public class Telescope : MonoBehaviour
@@ -47,8 +46,6 @@ public class Telescope : MonoBehaviour
         //handDist = Vector3.Distance(lHand.position, rHand.position);
         float dist = Vector3.Dot(lHand.position - rHand.position, transform.forward);
         handDist = Mathf.Abs(dist) * zoomMultTest;
-
-        Debug.Log(handDist);
 
         mainCam.enabled = false;
         zoomCam.enabled = true;
