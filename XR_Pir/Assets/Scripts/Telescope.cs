@@ -60,9 +60,10 @@ public class Telescope : MonoBehaviour
         mainCam.enabled = false;
         zoomCam.enabled = true;
 
-        zoomCam.transform.position = new(zoomCam.transform.position.x, zoomCam.transform.position.y, zoomCam.transform.position.z * handDist/* * zoomLevel*/);
-        float clampedZ = Mathf.Clamp(zoomCam.transform.position.z, 2f, maxZoomLength);
-        zoomCam.transform.position = new(zoomCam.transform.position.x, zoomCam.transform.position.y, clampedZ);
+        //zoom camera forward, zoom length depending on how far the hands are away from eachother
+        zoomCam.transform.rotation = mainCam.transform.rotation;
+        float zoomVal = Remap(handDist, 0.9f, 1.1f, 0f, maxZoomLength);
+        zoomCam.transform.position = mainCam.transform.position + (mainCam.transform.forward * zoomVal);
     }
 
 
