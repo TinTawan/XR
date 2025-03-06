@@ -56,7 +56,6 @@ public class FireCannon : MonoBehaviour
             {
                 Debug.LogWarning("Cant get collider");
             }
-            //cannonBall.GetComponent<SphereCollider>().enabled = true;
 
             yield return new WaitForEndOfFrame();
 
@@ -66,7 +65,7 @@ public class FireCannon : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         Debug.Log("Reset");
-        //lc.GetComponent<BoxCollider>().enabled = true;
+
         if (lc.TryGetComponent(out BoxCollider bc))
         {
             bc.enabled = true;
