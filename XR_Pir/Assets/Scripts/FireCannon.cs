@@ -11,6 +11,8 @@ public class FireCannon : MonoBehaviour
     [SerializeField] float fireStrength = 5f, fuseTime = 3f;
     [SerializeField] Transform firePoint;
 
+    [SerializeField] private CannonTrajectory cannonTrajectory;
+
     private void Start()
     {
         lc = GetComponentInChildren<LoadCannon>();
@@ -20,6 +22,8 @@ public class FireCannon : MonoBehaviour
 
     private void Update()
     {
+        cannonTrajectory.ShowTrajectoryLine(firePoint.position, firePoint.forward * fireStrength);      // displays trajectory
+
         if (lc.GetIsLoaded())
         {
             cannonBall = lc.GetCannonBall();
