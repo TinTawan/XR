@@ -6,7 +6,7 @@ public class LoadCannon : MonoBehaviour
 {
     [SerializeField] Transform ballPoint;
 
-    bool isLoaded;
+    public bool isLoaded { get; set; }
     GameObject cannonBall;
 
 
@@ -14,6 +14,15 @@ public class LoadCannon : MonoBehaviour
     {
         isLoaded = false;
 
+    }
+
+    private void Update()
+    {
+        if (isLoaded)
+        {
+            cannonBall.transform.position = ballPoint.position;
+
+        }
     }
 
     private void OnTriggerEnter(Collider col)
@@ -34,7 +43,7 @@ public class LoadCannon : MonoBehaviour
                 Debug.LogWarning("Cant get grab");
             }
 
-            cannonBall.transform.position = ballPoint.position;
+            //cannonBall.transform.position = ballPoint.position;
             cannonBall.GetComponent<Rigidbody>().isKinematic = true;
             cannonBall.GetComponent<Collider>().enabled = false;
 
@@ -43,10 +52,6 @@ public class LoadCannon : MonoBehaviour
     }
 
 
-    public bool GetIsLoaded()
-    {
-        return isLoaded;
-    }
 
     public GameObject GetCannonBall()
     {

@@ -27,7 +27,7 @@ public class CannonFuse : MonoBehaviour
             fusePulled = false;
         }
 
-        if (lc.GetIsLoaded())
+        if (lc.isLoaded)
         {
             grab.enabled = true;
         }
