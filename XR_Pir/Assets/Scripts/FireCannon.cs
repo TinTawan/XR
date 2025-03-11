@@ -10,7 +10,7 @@ public class FireCannon : MonoBehaviour
     GameObject cannonBall;
     Rigidbody baseRB;
 
-    [SerializeField] float fireStrength = 5f, fuseTime = 3f, baseMoveSpeed = 0.5f;
+    [SerializeField] float fireStrength = 5f, fuseTime = 3f, baseMoveSpeed = 0.5f, baseBackFireStrength = 5f;
     [SerializeField] Transform firePoint;
 
     [SerializeField] Transform baseLoadedPosition, baseBackFirePosition;
@@ -32,7 +32,8 @@ public class FireCannon : MonoBehaviour
         if (lc.isLoaded)
         {
             //move forward to loaded position
-            StartCoroutine(BaseMoveForward());
+            //StartCoroutine(BaseMoveForward());
+            MoveBaseForward();
 
             // displays trajectory
             cannonTrajectory.EnableTrajectory(true);
@@ -80,7 +81,8 @@ public class FireCannon : MonoBehaviour
             rb.AddForce(firePoint.transform.forward * fireStrength, ForceMode.Impulse);
 
             //move cannon base back
-            baseRB.AddForce(Vector3.back * fireStrength, ForceMode.Impulse);
+            baseRB.isKinematic = false;
+            baseRB.AddForce(Vector3.back * baseBackFireStrength, ForceMode.Impulse);
         }
 
         yield return new WaitForSeconds(1f);
@@ -92,6 +94,7 @@ public class FireCannon : MonoBehaviour
             bc.enabled = true;
         }
         cannonBall = null;
+        baseRB.isKinematic = true;
 
         //lc.isLoaded = false;
 
@@ -107,5 +110,10 @@ public class FireCannon : MonoBehaviour
             baseRB.transform.position += Vector3.forward * baseMoveSpeed;
             yield return null;
         }
+    }
+
+    void MoveBaseForward()
+    {
+        baseRB.transform.position = Vector3.Lerp(baseRB.transform.position, baseLoadedPosition.position, baseMoveSpeed * Time.deltaTime);
     }
 }
