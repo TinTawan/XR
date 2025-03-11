@@ -21,4 +21,9 @@ public class CannonTrajectory : MonoBehaviour
         lineRenderer.positionCount = lineSegments;
         lineRenderer.SetPositions(lineRendererPoints);
     }
+
+    public void EnableTrajectory(bool enable)
+    {
+        lineRenderer.enabled = enable;
+    }
 }

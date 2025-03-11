@@ -6,7 +6,7 @@ public class LoadCannon : MonoBehaviour
 {
     [SerializeField] Transform ballPoint;
 
-    bool isLoaded;
+    public bool isLoaded { get; set; }
     GameObject cannonBall;
 
 
@@ -43,10 +43,6 @@ public class LoadCannon : MonoBehaviour
     }
 
 
-    public bool GetIsLoaded()
-    {
-        return isLoaded;
-    }
 
     public GameObject GetCannonBall()
     {

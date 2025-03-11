@@ -1,31 +1,30 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FireCannon : MonoBehaviour
 {
     LoadCannon lc;
     CannonFuse cf;
+    CannonTrajectory cannonTrajectory;
 
     GameObject cannonBall;
     [SerializeField] float fireStrength = 5f, fuseTime = 3f;
     [SerializeField] Transform firePoint;
 
-    [SerializeField] private CannonTrajectory cannonTrajectory;
 
     private void Start()
     {
         lc = GetComponentInChildren<LoadCannon>();
         cf = GetComponentInChildren<CannonFuse>();
-
+        cannonTrajectory = GetComponent<CannonTrajectory>();
     }
 
     private void Update()
     {
-        cannonTrajectory.ShowTrajectoryLine(firePoint.position, firePoint.forward * fireStrength);      // displays trajectory
-
-        if (lc.GetIsLoaded())
+        if (lc.isLoaded)
         {
+            cannonTrajectory.EnableTrajectory(true);
+            cannonTrajectory.ShowTrajectoryLine(firePoint.position, firePoint.forward * fireStrength);      // displays trajectory
             cannonBall = lc.GetCannonBall();
 
             if (cf.GetFusePulled())
@@ -75,6 +74,9 @@ public class FireCannon : MonoBehaviour
             bc.enabled = true;
         }
         cannonBall = null;
+
+        lc.isLoaded = false;
+        cannonTrajectory.EnableTrajectory(false);
 
     }
 }
