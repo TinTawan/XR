@@ -40,6 +40,7 @@ public class FireCannon : MonoBehaviour
     IEnumerator Fire()
     {
         Debug.Log("Fuse Pulled");
+        lc.isLoaded = false;
 
         yield return new WaitForSeconds(fuseTime);
 
@@ -75,7 +76,7 @@ public class FireCannon : MonoBehaviour
         }
         cannonBall = null;
 
-        lc.isLoaded = false;
+        //lc.isLoaded = false;
         cannonTrajectory.EnableTrajectory(false);
 
     }

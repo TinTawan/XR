@@ -16,6 +16,15 @@ public class LoadCannon : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+        if (isLoaded)
+        {
+            cannonBall.transform.position = ballPoint.position;
+
+        }
+    }
+
     private void OnTriggerEnter(Collider col)
     {
         if (col.CompareTag("CannonBall"))
@@ -34,7 +43,7 @@ public class LoadCannon : MonoBehaviour
                 Debug.LogWarning("Cant get grab");
             }
 
-            cannonBall.transform.position = ballPoint.position;
+            //cannonBall.transform.position = ballPoint.position;
             cannonBall.GetComponent<Rigidbody>().isKinematic = true;
             cannonBall.GetComponent<Collider>().enabled = false;
 
