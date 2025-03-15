@@ -46,6 +46,7 @@ public class LoadCannon : MonoBehaviour
             //cannonBall.transform.position = ballPoint.position;
             cannonBall.GetComponent<Rigidbody>().isKinematic = true;
             cannonBall.GetComponent<Collider>().enabled = false;
+            FindObjectOfType<AudioManager>().AudioTrigger(AudioManager.SoundFXCat.CannonLoad, transform.position, 0.6f);
 
             Debug.Log("Cannon Loaded!");
         }

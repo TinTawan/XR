@@ -9,6 +9,7 @@ public class ShipSinking : MonoBehaviour
         if (collision.gameObject.CompareTag("CannonBall"))
         {
             GetComponent<ShipPath>().StopMovement();
+            FindObjectOfType<AudioManager>().AudioTrigger(AudioManager.SoundFXCat.EnemyHit, transform.position, 1f);
             GetComponent<Animator>().SetTrigger("StartSinking");
         }
     }

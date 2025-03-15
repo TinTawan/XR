@@ -56,6 +56,8 @@ public class FireCannon : MonoBehaviour
         Debug.Log("Fuse Pulled");
         lc.isLoaded = false;
 
+        FindObjectOfType<AudioManager>().AudioTrigger(AudioManager.SoundFXCat.CannonTriggered, transform.position, 0.1f);
+
         yield return new WaitForSeconds(fuseTime);
 
         if (cannonBall != null)
@@ -63,6 +65,8 @@ public class FireCannon : MonoBehaviour
             Debug.Log("F I R E");
             Rigidbody rb = cannonBall.GetComponent<Rigidbody>();
             rb.isKinematic = false;
+
+            FindObjectOfType<AudioManager>().AudioTrigger(AudioManager.SoundFXCat.CannonLaunch, transform.position, 0.1f);
 
             yield return new WaitForEndOfFrame();
 
