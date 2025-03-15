@@ -9,12 +9,22 @@ public class ShipPath : MonoBehaviour
     private float angle = 0f;
     private Vector3 startPos;
 
+    private bool isSinking = false;
+
     void Start()
     {
         startPos = transform.position;      // get current pos of ship
     }
 
     void Update()
+    {
+        if (!isSinking)       // stop ship movement when hit
+        {
+            MoveShip();
+        }
+    }
+
+    void MoveShip()
     {
         angle += speed * Time.deltaTime;    // updates angle
 
@@ -23,6 +33,11 @@ public class ShipPath : MonoBehaviour
 
         transform.position = new Vector3(xPos, transform.position.y, zPos);             // moves ship in a circle
         Vector3 direction = new Vector3(-Mathf.Sin(angle), 0f, Mathf.Cos(angle));       // get direction the ship should face
-        transform.rotation = Quaternion.LookRotation(direction);                        // rotate ship to face forward
+        transform.rotation = Quaternion.LookRotation(direction);                        // rotate ship to face forward     
+    }
+
+    public void StopMovement()
+    {
+        isSinking = true;
     }
 }
