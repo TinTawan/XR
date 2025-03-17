@@ -48,7 +48,8 @@ public class FireCannon : MonoBehaviour
                 StartCoroutine(Fire());
                 cf.SetFusePulled(false);
 
-                Instantiate(fusePS, fusePSPos.position, Quaternion.identity, transform);
+                //Instantiate(fusePS, fusePSPos.position, Quaternion.identity, transform);
+                ObjectPoolingManager.SpawnObject(fusePS, fusePSPos.position, Quaternion.identity);
             }
         }
     }
@@ -71,7 +72,9 @@ public class FireCannon : MonoBehaviour
 
             FindObjectOfType<AudioManager>().AudioTrigger(AudioManager.SoundFXCat.CannonLaunch, transform.position, 0.1f);
 
-            Instantiate(smokePS, smokePSPos.position, Quaternion.identity, transform);
+            //Instantiate(smokePS, smokePSPos.position, Quaternion.identity, transform);
+            ObjectPoolingManager.SpawnObject(smokePS, smokePSPos.position, Quaternion.identity);
+
 
             yield return new WaitForEndOfFrame();
 
