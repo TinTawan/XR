@@ -14,7 +14,9 @@ public class FireCannon : MonoBehaviour
     [SerializeField] Transform firePoint;
 
     [SerializeField] Transform baseLoadedPosition, baseBackFirePosition;
-     
+
+    [SerializeField] GameObject fusePS, smokePS;
+    [SerializeField] Transform fusePSPos, smokePSPos;
 
     private void Start()
     {
@@ -46,6 +48,7 @@ public class FireCannon : MonoBehaviour
                 StartCoroutine(Fire());
                 cf.SetFusePulled(false);
 
+                Instantiate(fusePS, fusePSPos.position, Quaternion.identity, transform);
             }
         }
     }
@@ -67,6 +70,8 @@ public class FireCannon : MonoBehaviour
             rb.isKinematic = false;
 
             FindObjectOfType<AudioManager>().AudioTrigger(AudioManager.SoundFXCat.CannonLaunch, transform.position, 0.1f);
+
+            Instantiate(smokePS, smokePSPos.position, Quaternion.identity, transform);
 
             yield return new WaitForEndOfFrame();
 

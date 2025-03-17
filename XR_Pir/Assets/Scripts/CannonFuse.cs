@@ -10,12 +10,15 @@ public class CannonFuse : MonoBehaviour
     LoadCannon lc;
     Rigidbody rb;
 
+    Collider fuseCol;
+
     private void Start()
     {
-        //startPos = transform.position;
-
         grab = GetComponent<XRGrabInteractable>();
         grab.enabled = false;
+
+        fuseCol = GetComponent<Collider>();
+        fuseCol.enabled = false;
 
         lc = GetComponentInParent<LoadCannon>();
 
@@ -24,17 +27,15 @@ public class CannonFuse : MonoBehaviour
 
     private void Update()
     {
-        if (!fusePulled)
-        {
-            //transform.position = startPos;
-            //rb.MovePosition(startPos);
-            //rb.MoveRotation(lc.transform.rotation);
-            fusePulled = false;
-        }
-
         if (lc.isLoaded)
         {
             grab.enabled = true;
+            fuseCol.enabled = true;
+        }
+
+        if (!fusePulled)
+        {
+            transform.position = startPos.position;
         }
     }
 
@@ -50,9 +51,21 @@ public class CannonFuse : MonoBehaviour
     public void SetFusePulled(bool pulled)
     {
         fusePulled = pulled;
+
+        if (pulled)
+        {
+            Invoke(nameof(DisableFuse), 2f);
+        }
     }
     public bool GetFusePulled()
     {
         return fusePulled;
     }
+
+    void DisableFuse()
+    {
+        grab.enabled = false;
+        fuseCol.enabled = false;
+    }
+
 }
