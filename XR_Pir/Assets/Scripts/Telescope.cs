@@ -197,10 +197,14 @@ public class Telescope : MonoBehaviour
 
     private void OnDisable()
     {
-        foreach (MeshRenderer mr in telescopeMeshes)
+        if(telescope != null)
         {
-            mr.enabled = true;
+            foreach (MeshRenderer mr in telescopeMeshes)
+            {
+                mr.enabled = true;
+            }
         }
+
     }
 
 }
