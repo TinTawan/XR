@@ -2152,7 +2152,7 @@ GameObject:
   - component: {fileID: 941009295}
   - component: {fileID: 941009294}
   m_Layer: 0
-  m_Name: HeadBox_Check
+  m_Name: Telescope_CheckBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

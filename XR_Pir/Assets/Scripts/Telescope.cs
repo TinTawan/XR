@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
@@ -8,7 +7,7 @@ public class Telescope : MonoBehaviour
 {
     [Header("Vignette")]
     [SerializeField] MeshRenderer vignette;
-    [SerializeField] float vAppertureSizeMax = 0.8f, vAppertureSizeMin = 0.45f/*, vFeatheringSize = 0.2f*/;
+    [SerializeField] float vAppertureSizeMax = 0.8f, vAppertureSizeMin = 0.45f;
     float vApperture;
 
     [Header("Hand Transforms")]
@@ -21,7 +20,7 @@ public class Telescope : MonoBehaviour
     Camera mainCam;
     Transform zoomCamOrigin;
 
-    [SerializeField] float /*zoomLevel = 6f,*/ maxZoomLength = 15f, zoomMultTest = 2f, zoomSmoothMove = 0.5f;
+    [SerializeField] float maxZoomLength = 15f, zoomMultTest = 2f, zoomSmoothMove = 0.5f;
     float handDist;
     Vector3 velocity = Vector3.zero;
 
@@ -37,7 +36,7 @@ public class Telescope : MonoBehaviour
         zoomCam.enabled = false;
 
         zoomCamOrigin = zoomCam.transform;
-        
+
         vignette.enabled = false;
         vApperture = vAppertureSizeMax;
     }
@@ -61,7 +60,7 @@ public class Telescope : MonoBehaviour
 
     void ZoomIn()
     {
-        if(telescopeInteractable.IsSelectedByLeft() && telescopeInteractable.IsSelectedByRight())
+        if (telescopeInteractable.IsSelectedByLeft() && telescopeInteractable.IsSelectedByRight())
         {
             //held by both hands
 
@@ -74,39 +73,31 @@ public class Telescope : MonoBehaviour
             zoomCam.enabled = true;
 
             //zoom camera forward, zoom length depending on how far the hands are away from eachother
-            //zoomCam.transform.rotation = mainCam.transform.rotation;
             float zoomVal = Remap(handDist, 0.9f, 1.1f, 0f, maxZoomLength);
-            //zoomCam.transform.position = mainCam.transform.position + (mainCam.transform.forward * zoomVal);
 
             Vector3 pos = Vector3.SmoothDamp(zoomCam.transform.position, mainCam.transform.position + (mainCam.transform.forward * zoomVal), ref velocity, zoomSmoothMove);
 
             zoomCam.transform.SetPositionAndRotation(pos, mainCam.transform.rotation);
 
         }
-        else if(telescopeInteractable.IsSelectedByLeft() || telescopeInteractable.IsSelectedByRight())
+        else if (telescopeInteractable.IsSelectedByLeft() || telescopeInteractable.IsSelectedByRight())
         {
             //held by one hand
 
             mainCam.enabled = false;
             zoomCam.enabled = true;
 
-            //zoom camera forward, zoom length depending on how far the hands are away from eachother
-            //zoomCam.transform.rotation = mainCam.transform.rotation;
-            //float zoomVal = Remap(handDist, 0.9f, 1.1f, 0f, maxZoomLength);
-            //zoomCam.transform.position = mainCam.transform.position + (mainCam.transform.forward * zoomVal);
-
             Vector3 pos = Vector3.SmoothDamp(zoomCam.transform.position, mainCam.transform.position + (mainCam.transform.forward * maxZoomLength / 2), ref velocity, zoomSmoothMove);
 
             zoomCam.transform.SetPositionAndRotation(pos, mainCam.transform.rotation);
         }
-        
+
 
     }
 
 
     private void OnTriggerEnter(Collider col)
     {
-        Debug.Log($"{col.name} entered trigger");
 
         if (col.CompareTag("Telescope"))
         {
@@ -132,7 +123,6 @@ public class Telescope : MonoBehaviour
 
     private void OnTriggerExit(Collider col)
     {
-        Debug.Log($"{col.name} exited trigger");
 
         if (col.CompareTag("Telescope"))
         {
