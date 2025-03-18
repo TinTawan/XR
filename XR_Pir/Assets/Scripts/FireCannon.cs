@@ -145,6 +145,7 @@ public class FireCannon : MonoBehaviour
     {
         Debug.Log($"returned {obj.name} to pool");
         obj.GetComponent<XRGrabInteractable>().enabled = true;
+        obj.GetComponent<Rigidbody>().isKinematic = false;
         obj.GetComponent<Rigidbody>().velocity = Vector3.zero;
 
         ObjectPoolingManager.ReturnToPool(obj);
