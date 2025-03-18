@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ControlAudio : MonoBehaviour
 {
     AudioSource audioSource;
-    public AudioClip myClip;
-    public float volume = 1f;
+    [SerializeField] AudioClip myClip;
+    [SerializeField] float volume = 1f;
 
     public void StartAudio() // plays sound effects stored in audioSource
     {
@@ -20,7 +18,18 @@ public class ControlAudio : MonoBehaviour
     {
         if (!audioSource.isPlaying)
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            ObjectPoolingManager.ReturnToPool(gameObject);
         }
+    }
+
+    public void SetClip(AudioClip inClip)
+    {
+        myClip = inClip;
+    }
+
+    public void SetVol(float inVol)
+    {
+        volume = inVol;
     }
 }
