@@ -7,7 +7,7 @@ public class LoadCannon : MonoBehaviour
     [SerializeField] Transform ballPoint;
 
     public bool isLoaded { get; set; }
-    GameObject cannonBall;
+    GameObject thisCannonball;
 
 
     private void Start()
@@ -20,7 +20,7 @@ public class LoadCannon : MonoBehaviour
     {
         if (isLoaded)
         {
-            cannonBall.transform.position = ballPoint.position;
+            thisCannonball.transform.position = ballPoint.position;
 
         }
     }
@@ -32,9 +32,9 @@ public class LoadCannon : MonoBehaviour
             GetComponent<BoxCollider>().enabled = false;
 
             isLoaded = true;
-            cannonBall = col.gameObject;
+            thisCannonball = col.gameObject;
 
-            if (cannonBall.TryGetComponent(out XRGrabInteractable grab))
+            if (thisCannonball.TryGetComponent(out XRGrabInteractable grab))
             {
                 grab.enabled = false;
             }
@@ -44,8 +44,8 @@ public class LoadCannon : MonoBehaviour
             }
 
             //cannonBall.transform.position = ballPoint.position;
-            cannonBall.GetComponent<Rigidbody>().isKinematic = true;
-            cannonBall.GetComponent<Collider>().enabled = false;
+            thisCannonball.GetComponent<Rigidbody>().isKinematic = true;
+            thisCannonball.GetComponent<Collider>().enabled = false;
             FindObjectOfType<AudioManager>().AudioTrigger(AudioManager.SoundFXCat.CannonLoad, transform.position, 0.6f);
 
             Debug.Log("Cannon Loaded!");
@@ -56,7 +56,7 @@ public class LoadCannon : MonoBehaviour
 
     public GameObject GetCannonBall()
     {
-        return cannonBall;
+        return thisCannonball;
     }
 
 }

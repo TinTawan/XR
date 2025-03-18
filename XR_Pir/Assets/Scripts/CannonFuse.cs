@@ -7,35 +7,52 @@ public class CannonFuse : MonoBehaviour
     [SerializeField] Transform startPos;
 
     XRGrabInteractable grab;
+    XRBaseInteractable knob;
+
     LoadCannon lc;
     Rigidbody rb;
 
+    Collider fuseCol;
+
+
     private void Start()
     {
-        //startPos = transform.position;
-
         grab = GetComponent<XRGrabInteractable>();
         grab.enabled = false;
+
+        fuseCol = GetComponent<Collider>();
+        fuseCol.enabled = false;
 
         lc = GetComponentInParent<LoadCannon>();
 
         rb = GetComponent<Rigidbody>();
+
+        knob = transform.parent.GetComponent<XRBaseInteractable>();
     }
 
     private void Update()
     {
-        if (!fusePulled)
-        {
-            //transform.position = startPos;
-            //rb.MovePosition(startPos);
-            //rb.MoveRotation(lc.transform.rotation);
-            fusePulled = false;
-        }
-
         if (lc.isLoaded)
         {
             grab.enabled = true;
+            fuseCol.enabled = true;
         }
+        else
+        {
+            DisableFuse();
+        }
+
+        if (fusePulled)
+        {
+            knob.enabled = false;
+
+        }
+        else
+        {
+            transform.position = startPos.position;
+        }
+
+
     }
 
     private void FixedUpdate()
@@ -50,9 +67,29 @@ public class CannonFuse : MonoBehaviour
     public void SetFusePulled(bool pulled)
     {
         fusePulled = pulled;
+
+        if (pulled)
+        {
+            Invoke(nameof(DisableFuse), 2f);
+            Invoke(nameof(EnableCannonPivot), 3f);
+
+        }
     }
     public bool GetFusePulled()
     {
         return fusePulled;
+    }
+
+    void DisableFuse()
+    {
+        grab.enabled = false;
+        fuseCol.enabled = false;
+
+    }
+
+    void EnableCannonPivot()
+    {
+        knob.enabled = true;
+
     }
 }
