@@ -56,6 +56,12 @@ MonoBehaviour:
   firePoint: {fileID: 3135858310747699404}
   baseLoadedPosition: {fileID: 9066340363933062782}
   baseBackFirePosition: {fileID: 2818875525610401056}
+  fusePS: {fileID: 4013369706311372444, guid: a5ab76cff88fb494eaac17a8a7660a96, type: 3}
+  smokePS: {fileID: 99818458712866130, guid: ce3bcd634ca06b0458a8131c102c9192, type: 3}
+  fusePSPos: {fileID: 9052176371091826898}
+  smokePSPos: {fileID: 3135858310747699404}
+  cannonballPrefab: {fileID: 2380347580405529967, guid: 03846e21aebf8204683323e9d7055ae7, type: 3}
+  cannonballSpawnPos: {fileID: 0}
 --- !u!114 &8661749865091930181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -649,8 +655,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 0.79317105}
-  m_Center: {x: 2.1738867e-23, y: 0.0000000018258366, z: -0.1034144}
+  m_Size: {x: 0.84924316, y: 0.8196032, z: 0.74877614}
+  m_Center: {x: 0.00000002616473, y: -0.000000009219666, z: -0.081216976}
 --- !u!54 &5826933254025212535
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -978,7 +984,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2453600965659694182}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: RotatingSection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
