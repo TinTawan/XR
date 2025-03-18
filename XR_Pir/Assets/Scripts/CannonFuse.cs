@@ -7,6 +7,8 @@ public class CannonFuse : MonoBehaviour
     [SerializeField] Transform startPos;
 
     XRGrabInteractable grab;
+    XRBaseInteractable knob;
+
     LoadCannon lc;
     Rigidbody rb;
 
@@ -23,6 +25,8 @@ public class CannonFuse : MonoBehaviour
         lc = GetComponentInParent<LoadCannon>();
 
         rb = GetComponent<Rigidbody>();
+
+        knob = transform.parent.GetComponent<XRBaseInteractable>();
     }
 
     private void Update()
@@ -32,11 +36,22 @@ public class CannonFuse : MonoBehaviour
             grab.enabled = true;
             fuseCol.enabled = true;
         }
+        else
+        {
+            DisableFuse();
+        }
 
-        if (!fusePulled)
+        if (fusePulled)
+        {
+            knob.enabled = false;
+        }
+        else
         {
             transform.position = startPos.position;
+            knob.enabled = true;
         }
+
+
     }
 
     private void FixedUpdate()

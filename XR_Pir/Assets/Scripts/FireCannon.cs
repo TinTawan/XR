@@ -1,5 +1,7 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
+
 
 public class FireCannon : MonoBehaviour
 {
@@ -7,16 +9,27 @@ public class FireCannon : MonoBehaviour
     CannonFuse cf;
     CannonTrajectory cannonTrajectory;
 
-    GameObject cannonBall;
+    GameObject thisCannonball;
     Rigidbody baseRB;
 
-    [SerializeField] float fireStrength = 5f, fuseTime = 3f, baseMoveSpeed = 0.5f, baseBackFireStrength = 5f;
+    [Header("Fire info")]
+    [SerializeField] float fireStrength = 5f;
+    [SerializeField] float fuseTime = 3f, baseMoveSpeed = 0.5f, baseBackFireStrength = 5f;
     [SerializeField] Transform firePoint;
 
-    [SerializeField] Transform baseLoadedPosition, baseBackFirePosition;
+    [Header("Move Positions")]
+    [SerializeField] Transform baseLoadedPosition;
+    [SerializeField] Transform baseBackFirePosition;
 
-    [SerializeField] GameObject fusePS, smokePS;
+    [Header("Particle Effects")]
+    [SerializeField] GameObject fusePS;
+    [SerializeField] GameObject smokePS;
     [SerializeField] Transform fusePSPos, smokePSPos;
+
+    [Header("Cannonball")]
+    [SerializeField] GameObject cannonballPrefab;
+    [SerializeField] Transform cannonballSpawnPos;
+
 
     private void Start()
     {
@@ -34,14 +47,13 @@ public class FireCannon : MonoBehaviour
         if (lc.isLoaded)
         {
             //move forward to loaded position
-            //StartCoroutine(BaseMoveForward());
             MoveBaseForward();
 
             // displays trajectory
             cannonTrajectory.EnableTrajectory(true);
             cannonTrajectory.ShowTrajectoryLine(firePoint.position, firePoint.forward * fireStrength);      
 
-            cannonBall = lc.GetCannonBall();
+            thisCannonball = lc.GetCannonBall();
 
             if (cf.GetFusePulled())
             {
@@ -64,10 +76,10 @@ public class FireCannon : MonoBehaviour
 
         yield return new WaitForSeconds(fuseTime);
 
-        if (cannonBall != null)
+        if (thisCannonball != null)
         {
             Debug.Log("F I R E");
-            Rigidbody rb = cannonBall.GetComponent<Rigidbody>();
+            Rigidbody rb = thisCannonball.GetComponent<Rigidbody>();
             rb.isKinematic = false;
 
             FindObjectOfType<AudioManager>().AudioTrigger(AudioManager.SoundFXCat.CannonLaunch, transform.position, 0.1f);
@@ -78,7 +90,7 @@ public class FireCannon : MonoBehaviour
 
             yield return new WaitForEndOfFrame();
 
-            if (cannonBall.TryGetComponent(out SphereCollider col))
+            if (thisCannonball.TryGetComponent(out SphereCollider col))
             {
                 col.enabled = true;
             }
@@ -105,27 +117,36 @@ public class FireCannon : MonoBehaviour
         {
             bc.enabled = true;
         }
-        cannonBall = null;
-        baseRB.isKinematic = true;
-
-        //lc.isLoaded = false;
-
         //disable trajectory
         cannonTrajectory.EnableTrajectory(false);
+        baseRB.isKinematic = true;
+
+        //after 5 seconds, return ball to pool
+        yield return new WaitForSeconds(5f);
+        ReturnCannonballToPool(thisCannonball);
+        //and set it to null
+        thisCannonball = null;
+
+        //spawn new cannon ball from pool
+        ObjectPoolingManager.SpawnObject(cannonballPrefab, cannonballSpawnPos.position, Quaternion.identity);
+
+        
 
     }
 
-    IEnumerator BaseMoveForward()
-    {
-        while(baseRB.transform.position.z > baseLoadedPosition.transform.position.z)
-        {
-            baseRB.transform.position += Vector3.forward * baseMoveSpeed;
-            yield return null;
-        }
-    }
 
     void MoveBaseForward()
     {
         baseRB.transform.position = Vector3.Lerp(baseRB.transform.position, baseLoadedPosition.position, baseMoveSpeed * Time.deltaTime);
+    }
+
+
+    void ReturnCannonballToPool(GameObject obj)
+    {
+        Debug.Log($"returned {obj.name} to pool");
+        obj.GetComponent<XRGrabInteractable>().enabled = true;
+        obj.GetComponent<Rigidbody>().velocity = Vector3.zero;
+
+        ObjectPoolingManager.ReturnToPool(obj);
     }
 }
