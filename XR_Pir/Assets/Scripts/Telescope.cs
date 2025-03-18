@@ -24,7 +24,6 @@ public class Telescope : MonoBehaviour
     float handDist;
     Vector3 velocity = Vector3.zero;
 
-
     GameObject telescope;
     XRGrabInteractable telescopeGrab;
     IXRSelectInteractable telescopeInteractable;
@@ -75,7 +74,8 @@ public class Telescope : MonoBehaviour
             //zoom camera forward, zoom length depending on how far the hands are away from eachother
             float zoomVal = Remap(handDist, 0.9f, 1.1f, 0f, maxZoomLength);
 
-            Vector3 pos = Vector3.SmoothDamp(zoomCam.transform.position, mainCam.transform.position + (mainCam.transform.forward * zoomVal), ref velocity, zoomSmoothMove);
+            
+            Vector3 pos = Vector3.SmoothDamp(zoomCam.transform.position, ZoomCamWithoutClipping(mainCam.transform.position + (mainCam.transform.forward * zoomVal)), ref velocity, zoomSmoothMove);
 
             zoomCam.transform.SetPositionAndRotation(pos, mainCam.transform.rotation);
 
@@ -87,7 +87,7 @@ public class Telescope : MonoBehaviour
             mainCam.enabled = false;
             zoomCam.enabled = true;
 
-            Vector3 pos = Vector3.SmoothDamp(zoomCam.transform.position, mainCam.transform.position + (mainCam.transform.forward * maxZoomLength / 2), ref velocity, zoomSmoothMove);
+            Vector3 pos = Vector3.SmoothDamp(zoomCam.transform.position, ZoomCamWithoutClipping(mainCam.transform.position + (mainCam.transform.forward * maxZoomLength / 2)), ref velocity, zoomSmoothMove);
 
             zoomCam.transform.SetPositionAndRotation(pos, mainCam.transform.rotation);
         }
@@ -163,8 +163,23 @@ public class Telescope : MonoBehaviour
 
     }
 
+    Vector3 ZoomCamWithoutClipping(Vector3 zoomDesiredPos)
+    {
+        Vector3 startPos = telescope.transform.position;
+        Vector3 dir = (zoomDesiredPos - startPos).normalized;
+        float maxDist = Vector3.Distance(startPos, zoomDesiredPos);
+
+        if(Physics.Raycast(startPos, dir, out RaycastHit hit, maxDist))
+        {
+            return hit.point - dir * 0.75f;
+        }
+
+        return zoomDesiredPos;
+    }
+
     float Remap(float value, float a1, float a2, float b1, float b2)
     {
         return b1 + (value - a1) * (b2 - b1) / (a2 - a1);
     }
+
 }
