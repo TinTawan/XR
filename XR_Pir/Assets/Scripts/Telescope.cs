@@ -24,7 +24,10 @@ public class Telescope : MonoBehaviour
     float handDist;
     Vector3 velocity = Vector3.zero;
 
+    [SerializeField] [Range(0.1f, 2f)] float camClipLength = 0.75f;
+
     GameObject telescope;
+    MeshRenderer[] telescopeMeshes;
     XRGrabInteractable telescopeGrab;
     IXRSelectInteractable telescopeInteractable;
 
@@ -103,6 +106,11 @@ public class Telescope : MonoBehaviour
         {
             zoomed = true;
             telescope = col.gameObject;
+            telescopeMeshes = telescope.transform.parent.GetComponentsInChildren<MeshRenderer>();
+            foreach(MeshRenderer mr in telescopeMeshes)
+            {
+                mr.enabled = false;
+            }
 
             telescopeGrab = telescope.GetComponentInParent<XRGrabInteractable>();
 
@@ -129,6 +137,11 @@ public class Telescope : MonoBehaviour
             zoomed = false;
             telescope = null;
             telescopeGrab = null;
+
+            foreach (MeshRenderer mr in telescopeMeshes)
+            {
+                mr.enabled = true;
+            }
 
             zoomCam.transform.position = mainCam.transform.position;
 
@@ -171,7 +184,7 @@ public class Telescope : MonoBehaviour
 
         if(Physics.Raycast(startPos, dir, out RaycastHit hit, maxDist))
         {
-            return hit.point - dir * 0.75f;
+            return hit.point - dir * camClipLength;
         }
 
         return zoomDesiredPos;
@@ -180,6 +193,14 @@ public class Telescope : MonoBehaviour
     float Remap(float value, float a1, float a2, float b1, float b2)
     {
         return b1 + (value - a1) * (b2 - b1) / (a2 - a1);
+    }
+
+    private void OnDisable()
+    {
+        foreach (MeshRenderer mr in telescopeMeshes)
+        {
+            mr.enabled = true;
+        }
     }
 
 }

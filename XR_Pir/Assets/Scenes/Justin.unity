@@ -2194,6 +2194,7 @@ MonoBehaviour:
   maxZoomLength: 15
   zoomMultTest: 2.5
   zoomSmoothMove: 0.15
+  camClipLength: 1
 --- !u!65 &941009295
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3724,6 +3725,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3595903410598796415, guid: ab00dd2908e0fee4799c5dcf0d1276c4, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7413855840902347708, guid: ab00dd2908e0fee4799c5dcf0d1276c4, type: 3}
       propertyPath: m_Name
       value: Telescope
