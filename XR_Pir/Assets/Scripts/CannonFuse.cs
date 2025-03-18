@@ -14,6 +14,7 @@ public class CannonFuse : MonoBehaviour
 
     Collider fuseCol;
 
+
     private void Start()
     {
         grab = GetComponent<XRGrabInteractable>();
@@ -44,11 +45,11 @@ public class CannonFuse : MonoBehaviour
         if (fusePulled)
         {
             knob.enabled = false;
+
         }
         else
         {
             transform.position = startPos.position;
-            knob.enabled = true;
         }
 
 
@@ -70,6 +71,8 @@ public class CannonFuse : MonoBehaviour
         if (pulled)
         {
             Invoke(nameof(DisableFuse), 2f);
+            Invoke(nameof(EnableCannonPivot), 3f);
+
         }
     }
     public bool GetFusePulled()
@@ -81,6 +84,12 @@ public class CannonFuse : MonoBehaviour
     {
         grab.enabled = false;
         fuseCol.enabled = false;
+
     }
 
+    void EnableCannonPivot()
+    {
+        knob.enabled = true;
+
+    }
 }
