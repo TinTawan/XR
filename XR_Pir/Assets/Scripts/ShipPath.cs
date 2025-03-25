@@ -8,7 +8,6 @@ public class ShipPath : MonoBehaviour
     [SerializeField] private float radius = 5f;
     private float angle = 0f;
     private Vector3 startPos;
-
     private bool isSinking = false;
 
     void Start()
