@@ -31,6 +31,8 @@ public class Telescope : MonoBehaviour
     XRGrabInteractable telescopeGrab;
     IXRSelectInteractable telescopeInteractable;
 
+    [SerializeField] LayerMask zoomExcludeLayer;
+
     private void Start()
     {
         mainCam = Camera.main;
@@ -182,7 +184,7 @@ public class Telescope : MonoBehaviour
         Vector3 dir = (zoomDesiredPos - startPos).normalized;
         float maxDist = Vector3.Distance(startPos, zoomDesiredPos);
 
-        if(Physics.Raycast(startPos, dir, out RaycastHit hit, maxDist))
+        if(Physics.Raycast(startPos, dir, out RaycastHit hit, maxDist, ~zoomExcludeLayer))
         {
             return hit.point - dir * camClipLength;
         }
