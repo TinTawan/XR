@@ -69,7 +69,6 @@ public class FireCannon : MonoBehaviour
 
     IEnumerator Fire()
     {
-        Debug.Log("Fuse Pulled");
         lc.isLoaded = false;
 
         FindObjectOfType<AudioManager>().AudioTrigger(AudioManager.SoundFXCat.CannonTriggered, transform.position, 0.1f);
@@ -78,7 +77,6 @@ public class FireCannon : MonoBehaviour
 
         if (thisCannonball != null)
         {
-            Debug.Log("F I R E");
             Rigidbody rb = thisCannonball.GetComponent<Rigidbody>();
             rb.isKinematic = false;
 
@@ -94,10 +92,6 @@ public class FireCannon : MonoBehaviour
             {
                 col.enabled = true;
             }
-            else
-            {
-                Debug.LogWarning("Cant get collider");
-            }
 
             yield return new WaitForEndOfFrame();
 
@@ -111,7 +105,6 @@ public class FireCannon : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        Debug.Log("Reset");
 
         if (lc.TryGetComponent(out BoxCollider bc))
         {
@@ -143,10 +136,10 @@ public class FireCannon : MonoBehaviour
 
     void ReturnCannonballToPool(GameObject obj)
     {
-        Debug.Log($"returned {obj.name} to pool");
         obj.GetComponent<XRGrabInteractable>().enabled = true;
         obj.GetComponent<Rigidbody>().isKinematic = false;
         obj.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        obj.GetComponent<SphereCollider>().enabled = true;
 
         ObjectPoolingManager.ReturnToPool(obj);
     }

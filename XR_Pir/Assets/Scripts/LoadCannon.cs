@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
-
 public class LoadCannon : MonoBehaviour
 {
     [SerializeField] Transform ballPoint;
@@ -38,17 +37,11 @@ public class LoadCannon : MonoBehaviour
             {
                 grab.enabled = false;
             }
-            else
-            {
-                Debug.LogWarning("Cant get grab");
-            }
 
-            //cannonBall.transform.position = ballPoint.position;
             thisCannonball.GetComponent<Rigidbody>().isKinematic = true;
             thisCannonball.GetComponent<Collider>().enabled = false;
             FindObjectOfType<AudioManager>().AudioTrigger(AudioManager.SoundFXCat.CannonLoad, transform.position, 0.6f);
 
-            Debug.Log("Cannon Loaded!");
         }
     }
 
