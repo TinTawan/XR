@@ -120,10 +120,7 @@ public class Telescope : MonoBehaviour
             {
                 telescopeInteractable = select;
             }
-            else
-            {
-                Debug.LogWarning("Failed to get IXRSelectInteractable");
-            }
+
 
 
             StartCoroutine(AppertureZoomIn(0.05f));
