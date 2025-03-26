@@ -46,8 +46,6 @@ public class FallenOffShipRespawn : MonoBehaviour
 
     IEnumerator AppertureZoomIn(float delta)
     {
-        Debug.Log("zoom");
-
         vignette.materials[0].SetFloat("_ApertureSize", 1);
         vignette.enabled = true;
 
