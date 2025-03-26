@@ -168,7 +168,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3697999052512699214}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.1736482, z: 0, w: 0.9848078}
+  m_LocalRotation: {x: 0, y: 0.12619898, z: 0, w: 0.992005}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 99.999985, y: 100.00004, z: 100.00002}
   m_ConstrainProportionsScale: 0
@@ -359,7 +359,7 @@ MonoBehaviour:
   m_StartingSelectFilters: []
   m_StartingInteractionStrengthFilters: []
   m_Handle: {fileID: 7278347045710547569}
-  m_Value: 1
+  m_Value: 0.75
   m_ClampedMotion: 1
   m_MaxAngle: 20
   m_MinAngle: -2
