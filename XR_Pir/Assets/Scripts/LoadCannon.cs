@@ -8,6 +8,7 @@ public class LoadCannon : MonoBehaviour
     public bool isLoaded { get; set; }
     GameObject thisCannonball;
 
+    bool hasPlayed = false;       // checking for audio played before
 
     private void Start()
     {
@@ -36,6 +37,13 @@ public class LoadCannon : MonoBehaviour
             if (thisCannonball.TryGetComponent(out XRGrabInteractable grab))
             {
                 grab.enabled = false;
+
+                // audio for putting cannonball in cannon
+                if (!hasPlayed)
+                {
+                    hasPlayed = true;
+                    GameStateManager.Instance.CannonballPickedUp();
+                }
             }
 
             thisCannonball.GetComponent<Rigidbody>().isKinematic = true;

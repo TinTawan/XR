@@ -31,6 +31,7 @@ public class MenuTrigger : MonoBehaviour
             {
                 canvas.SetActive(false);
                 canvasHidden = true;
+                GameStateManager.Instance.WheelTurned();
             }
         }
     }

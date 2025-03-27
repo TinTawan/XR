@@ -30,7 +30,9 @@ public class Telescope : MonoBehaviour
     MeshRenderer[] telescopeMeshes;
     XRGrabInteractable telescopeGrab;
     IXRSelectInteractable telescopeInteractable;
-
+    
+    bool hasPlayed = false; // playing telescope audio once
+    
     [SerializeField] LayerMask zoomExcludeLayer;
 
     private void Start()
@@ -43,10 +45,14 @@ public class Telescope : MonoBehaviour
 
         vignette.enabled = false;
         vApperture = vAppertureSizeMax;
+
+        telescopeGrab = GetComponentInParent<XRGrabInteractable>();
+
     }
 
     private void Update()
     {
+
         if (zoomed && telescope != null)
         {
             ZoomIn();
@@ -64,6 +70,7 @@ public class Telescope : MonoBehaviour
 
     void ZoomIn()
     {
+
         if (telescopeInteractable.IsSelectedByLeft() && telescopeInteractable.IsSelectedByRight())
         {
             //held by both hands
@@ -95,15 +102,14 @@ public class Telescope : MonoBehaviour
             Vector3 pos = Vector3.SmoothDamp(zoomCam.transform.position, ZoomCamWithoutClipping(mainCam.transform.position + (mainCam.transform.forward * maxZoomLength / 2)), ref velocity, zoomSmoothMove);
 
             zoomCam.transform.SetPositionAndRotation(pos, mainCam.transform.rotation);
-        }
 
+        }
 
     }
 
 
     private void OnTriggerEnter(Collider col)
     {
-
         if (col.CompareTag("Telescope"))
         {
             zoomed = true;
@@ -119,11 +125,18 @@ public class Telescope : MonoBehaviour
             if (telescopeGrab.TryGetComponent(out IXRSelectInteractable select))
             {
                 telescopeInteractable = select;
+
+                if (!hasPlayed)
+                {
+                    hasPlayed = true;
+                    GameStateManager.Instance.TelescopePicked(); // Play pickup audio only once
+                    StartCoroutine(PlayShipSpottedAudio());
+                }
             }
 
 
-
             StartCoroutine(AppertureZoomIn(0.05f));
+
         }
 
     }
@@ -204,6 +217,12 @@ public class Telescope : MonoBehaviour
             }
         }
 
+    }
+
+    IEnumerator PlayShipSpottedAudio()
+    {
+        yield return new WaitForSeconds(10f);
+        GameStateManager.Instance.ShipSpotted();
     }
 
 }
