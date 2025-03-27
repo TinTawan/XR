@@ -35,6 +35,7 @@ public class ShipSinking : MonoBehaviour
             }
 
             GetComponent<Animator>().SetTrigger("StartSinking");
+            FindObjectOfType<AudioManager>().AudioTrigger(AudioManager.SoundFXCat.EnemyHit, transform.position, 0.6f);
         }
     }
 }
