@@ -8,8 +8,8 @@ OcclusionCullingSettings:
     smallestOccluder: 5
     smallestHole: 0.25
     backfaceThreshold: 100
-  m_SceneGUID: 00000000000000000000000000000000
-  m_OcclusionCullingData: {fileID: 0}
+  m_SceneGUID: d3c8fe047dee7d74883b1948ed7d4c2d
+  m_OcclusionCullingData: {fileID: 36300000, guid: 445bb7ca93b44ef40afebd912fdf262a, type: 2}
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
@@ -2237,7 +2237,7 @@ GameObject:
   - component: {fileID: 220965763}
   - component: {fileID: 220965762}
   m_Layer: 0
-  m_Name: HeadBox_Check
+  m_Name: Telescope_CheckBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7198,10 +7198,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1332311266}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
-  m_LocalPosition: {x: -46.361, y: -2.5540001, z: 21.516998}
-  m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
-  m_ConstrainProportionsScale: 1
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0, z: 10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1048589883}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
