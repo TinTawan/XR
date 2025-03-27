@@ -2763,6 +2763,54 @@
                     "isPartOfComposite": true
                 }
             ]
+        },
+        {
+            "name": "Cheats",
+            "id": "dbb3e7e0-4b3e-4990-bfb8-a086c27200ca",
+            "actions": [
+                {
+                    "name": "Reset",
+                    "type": "Button",
+                    "id": "63d04b02-3d2d-4711-a3d9-fcb54d15bf03",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Hold",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Quit",
+                    "type": "Button",
+                    "id": "3ffc100c-1511-47e8-bb58-17dc0175900b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Hold",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "d812ffa6-94df-46a2-8dfc-7bbdac3bcecf",
+                    "path": "<XRController>{LeftHand}/{SecondaryButton}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Reset",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0cd67ed5-f687-4f44-be45-3ce61907dbb4",
+                    "path": "<XRController>{RightHand}/{SecondaryButton}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Quit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
