@@ -1074,8 +1074,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Timer
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f0ade974334c14346a560f078eaca592, type: 2}
+  m_sharedMaterial: {fileID: -8089744702800226235, guid: f0ade974334c14346a560f078eaca592, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2089,6 +2089,12 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: ef94a2b43550f5f41ac3f7157c704abe, type: 3}
   - gameState: 3
     audioClip: {fileID: 8300000, guid: ed309d6e3c9e21649866dc357087471b, type: 3}
+  - gameState: 4
+    audioClip: {fileID: 8300000, guid: 444d2e8cf44e3ae4180a15894c7c8011, type: 3}
+  - gameState: 5
+    audioClip: {fileID: 8300000, guid: 4c3ee5c3cbbf23940bd5a51ad3c15cbf, type: 3}
+  - gameState: 6
+    audioClip: {fileID: 8300000, guid: ee372fcffff1db14e92f41f18763d276, type: 3}
 --- !u!1 &568892710
 GameObject:
   m_ObjectHideFlags: 0

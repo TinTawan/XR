@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum GameState { GameStart, Introduction, TelescopePickedUp, Idle, ShipSpotted, CannonballPickedUp, OneShipHit, TwoShipsHit, ThreeShipsHit, LostBattle }
+public enum GameState { GameStart, Introduction, TelescopePickedUp, Idle1, Idle2, Idle3, Idle4, ShipSpotted, CannonballPickedUp, OneShipHit, TwoShipsHit, ThreeShipsHit, LostBattle }
 
 public class GameStateManager : MonoBehaviour
 {
@@ -32,7 +32,7 @@ public class GameStateManager : MonoBehaviour
 
     void Update()
     {
-        if (CurrentState != GameState.Idle)
+        if (CurrentState != GameState.Idle1 && CurrentState != GameState.Idle2 && CurrentState != GameState.Idle3 && CurrentState != GameState.Idle4)
         {
             idleTimer += Time.deltaTime;
             if (idleTimer >= idleThreshold)
@@ -44,8 +44,8 @@ public class GameStateManager : MonoBehaviour
 
     public void SetState(GameState newState)
     {
-        if (newState != GameState.Idle)
-        {
+        if (newState != GameState.Idle1 && newState != GameState.Idle2 && newState != GameState.Idle3 && newState != GameState.Idle4)
+            {
             idleTimer = 0f;     // reset idle timer
         }
 
@@ -55,9 +55,10 @@ public class GameStateManager : MonoBehaviour
 
     private void TriggerIdleState()
     {
-        if (CurrentState != GameState.Idle)
+        if (CurrentState != GameState.Idle1 && CurrentState != GameState.Idle2 && CurrentState != GameState.Idle3 && CurrentState != GameState.Idle4)
         {
-            SetState(GameState.Idle);
+            GameState randomIdleState = (GameState)Random.Range((int) GameState.Idle1, (int) GameState.Idle4 + 1);
+            SetState(randomIdleState);
         }
     }
 
