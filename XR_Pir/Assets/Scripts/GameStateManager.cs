@@ -2,13 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum GameState { GameStart, Introduction, TelescopePickedUp, FreePlay, ShipSpotted, CannonballPickedUp, OneShipHit, TwoShipsHit, ThreeShipsHit, LostBattle }
+public enum GameState { GameStart, Introduction, TelescopePickedUp, Idle, ShipSpotted, CannonballPickedUp, OneShipHit, TwoShipsHit, ThreeShipsHit, LostBattle }
 
 public class GameStateManager : MonoBehaviour
 {
     public static GameStateManager Instance;
     public GameState CurrentState { get; private set; }
-    bool cannonballPickupTriggered = false;
+    private bool cannonballPickupTriggered = false;
+
+    private float idleTimer = 0f;
+    private float idleThreshold = 35f;
 
     private void Awake()
     {
@@ -27,10 +30,35 @@ public class GameStateManager : MonoBehaviour
         SetState(GameState.GameStart);
     }
 
+    void Update()
+    {
+        if (CurrentState != GameState.Idle)
+        {
+            idleTimer += Time.deltaTime;
+            if (idleTimer >= idleThreshold)
+            {
+                TriggerIdleState();
+            }
+        }
+    }
+
     public void SetState(GameState newState)
     {
+        if (newState != GameState.Idle)
+        {
+            idleTimer = 0f;     // reset idle timer
+        }
+
         CurrentState = newState;
         DialogueManager.Instance.PlayStateDialogue(newState);
+    }
+
+    private void TriggerIdleState()
+    {
+        if (CurrentState != GameState.Idle)
+        {
+            SetState(GameState.Idle);
+        }
     }
 
     public void WheelTurned()

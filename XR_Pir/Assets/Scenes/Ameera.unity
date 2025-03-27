@@ -2087,6 +2087,8 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: 429b4c95300d5e64387b03df371de38e, type: 3}
   - gameState: 9
     audioClip: {fileID: 8300000, guid: ef94a2b43550f5f41ac3f7157c704abe, type: 3}
+  - gameState: 3
+    audioClip: {fileID: 8300000, guid: ed309d6e3c9e21649866dc357087471b, type: 3}
 --- !u!1 &568892710
 GameObject:
   m_ObjectHideFlags: 0
@@ -3201,7 +3203,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &978913055
 MonoBehaviour:
   m_ObjectHideFlags: 0
