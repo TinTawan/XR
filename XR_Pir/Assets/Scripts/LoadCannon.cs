@@ -38,11 +38,11 @@ public class LoadCannon : MonoBehaviour
             {
                 grab.enabled = false;
 
-                // audio for putting cannonball in cannon
+                //// audio for putting cannonball in cannon
                 if (!hasPlayed)
                 {
-                    hasPlayed = true;
                     GameStateManager.Instance.CannonballPickedUp();
+                    hasPlayed = true;
                 }
             }
 

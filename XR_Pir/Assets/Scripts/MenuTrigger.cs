@@ -20,19 +20,21 @@ public class MenuTrigger : MonoBehaviour
     {
         float wheelRotation = wheelTransform.eulerAngles.y - startRotation;
 
+        // Convert to -180 to 180 range for proper comparison
         if (wheelRotation > 180)
         {
             wheelRotation -= 360;
         }
-
-        if (!canvasHidden)
+        else if (wheelRotation < -180)
         {
-            if (Mathf.Abs(wheelRotation) > rotationThreshold)
-            {
-                canvas.SetActive(false);
-                canvasHidden = true;
-                GameStateManager.Instance.WheelTurned();
-            }
+            wheelRotation += 360;
+        }
+
+        if (!canvasHidden && Mathf.Abs(wheelRotation) >= rotationThreshold)
+        {
+            canvas.SetActive(false);
+            canvasHidden = true;
+            GameStateManager.Instance.WheelTurned();
         }
     }
 }
