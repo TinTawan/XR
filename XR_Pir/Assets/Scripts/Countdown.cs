@@ -13,7 +13,7 @@ public class Countdown : MonoBehaviour
 
     void Start()
     {
-        countdownCanvas.gameObject.SetActive(true);
+        countdownCanvas.gameObject.SetActive(false);
     }
 
     void Update()
@@ -23,12 +23,18 @@ public class Countdown : MonoBehaviour
             StartCountdown();
         }
 
+        if (GameStateManager.Instance.CurrentState == GameState.ThreeShipsHit)
+        {
+            countdownActive = false;
+        }
+
         if (timeLeft > 0 && countdownActive)
         {
             timeLeft -= Time.deltaTime;
             if (timeLeft < 0)
             {
                 timeLeft = 0;
+                GameStateManager.Instance.SetState(GameState.LostBattle);
             }
 
             int minutes = Mathf.FloorToInt(timeLeft / 60);

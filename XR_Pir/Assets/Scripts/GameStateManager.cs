@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum GameState { GameStart, Introduction, TelescopePickedUp, FreePlay, ShipSpotted, CannonballPickedUp, OneShipHit, TwoShipsHit, ThreeShipsHit }
+public enum GameState { GameStart, Introduction, TelescopePickedUp, FreePlay, ShipSpotted, CannonballPickedUp, OneShipHit, TwoShipsHit, ThreeShipsHit, LostBattle }
 
 public class GameStateManager : MonoBehaviour
 {
@@ -70,5 +70,10 @@ public class GameStateManager : MonoBehaviour
     public void ThreeShipsHit()
     {
         SetState(GameState.ThreeShipsHit);
+    }
+
+    public void LostBattle()
+    {
+        SetState(GameState.LostBattle);
     }
 }
