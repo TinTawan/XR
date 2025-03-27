@@ -100,7 +100,7 @@ public class FireCannon : MonoBehaviour
 
             //move cannon base back
             baseRB.isKinematic = false;
-            baseRB.AddForce(Vector3.back * baseBackFireStrength, ForceMode.Impulse);
+            baseRB.AddForce(transform.forward * baseBackFireStrength, ForceMode.Impulse);
         }
 
         yield return new WaitForSeconds(1f);
@@ -117,8 +117,7 @@ public class FireCannon : MonoBehaviour
         //after 5 seconds, return ball to pool
         yield return new WaitForSeconds(5f);
         ReturnCannonballToPool(thisCannonball);
-        //and set it to null
-        thisCannonball = null;
+        
 
         //spawn new cannon ball from pool
         ObjectPoolingManager.SpawnObject(cannonballPrefab, cannonballSpawnPos.position, Quaternion.identity);
@@ -136,10 +135,14 @@ public class FireCannon : MonoBehaviour
 
     void ReturnCannonballToPool(GameObject obj)
     {
+        //reset necessary values
         obj.GetComponent<XRGrabInteractable>().enabled = true;
         obj.GetComponent<Rigidbody>().isKinematic = false;
         obj.GetComponent<Rigidbody>().velocity = Vector3.zero;
         obj.GetComponent<SphereCollider>().enabled = true;
+        
+        //and set it to null
+        thisCannonball = null;
 
         ObjectPoolingManager.ReturnToPool(obj);
     }
