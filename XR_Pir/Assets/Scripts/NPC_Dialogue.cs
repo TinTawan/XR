@@ -8,7 +8,7 @@ public class NPC_Dialogue : MonoBehaviour
     public AudioClip[] DialogueLines;
     private bool TelescopeAudioPlayed = false;
 
-    // Start is called before the first frame update
+    //Start is called before the first frame update
     void Start()
     {
         StartCoroutine(SceneLoaded());
@@ -17,14 +17,14 @@ public class NPC_Dialogue : MonoBehaviour
     IEnumerator SceneLoaded()
     {
         yield return new WaitForSeconds(3f);    // allows the scene to load before playing voiceline
-        TriggerNPCDialogue(0);      // plays greeting dialogue
+        //TriggerNPCDialogue(0);      // plays greeting dialogue
     }
 
     public void TriggerNPCDialogue(int index)
     {
         if (index == 1 && TelescopeAudioPlayed)
             return;
-        
+
         audioSource.clip = DialogueLines[index];
         audioSource.Play();
 
