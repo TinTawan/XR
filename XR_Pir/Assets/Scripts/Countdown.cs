@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Countdown : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class Countdown : MonoBehaviour
     public Canvas countdownCanvas;
 
     private bool countdownActive = false;
+
+    [SerializeField] float loseDialogueLength = 11f, winDialogueLength = 10f;
 
     void Start()
     {
@@ -26,6 +29,9 @@ public class Countdown : MonoBehaviour
         if (GameStateManager.Instance.CurrentState == GameState.ThreeShipsHit)
         {
             countdownActive = false;
+
+            //win so reset scene after dialogue
+            Invoke(nameof(ResetScene), winDialogueLength);
         }
 
         if (timeLeft > 0 && countdownActive)
@@ -35,6 +41,9 @@ public class Countdown : MonoBehaviour
             {
                 timeLeft = 0;
                 GameStateManager.Instance.SetState(GameState.LostBattle);
+
+                //lose so reset scene after dialogue
+                Invoke(nameof(ResetScene), loseDialogueLength);
             }
 
             int minutes = Mathf.FloorToInt(timeLeft / 60);
@@ -48,4 +57,10 @@ public class Countdown : MonoBehaviour
         countdownActive = true;
         countdownCanvas.gameObject.SetActive(true);
     }
+
+    void ResetScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
 }
