@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum GameState { GameStart, Introduction, TelescopePickedUp, FreePlay, ShipSpotted, CannonballPickedUp, OneShipHit, TwoShipsHit, ThreeShipsHit }
+public enum GameState { GameStart, Introduction, TelescopePickedUp, FreePlay, ShipSpotted, CannonballPickedUp, OneShipHit, TwoShipsHit, ThreeShipsHit, LostBattle }
 
 public class GameStateManager : MonoBehaviour
 {
     public static GameStateManager Instance;
     public GameState CurrentState { get; private set; }
+    bool cannonballPickupTriggered = false;
 
     private void Awake()
     {
@@ -49,7 +50,11 @@ public class GameStateManager : MonoBehaviour
 
     public void CannonballPickedUp()
     {
-        SetState(GameState.CannonballPickedUp);
+        if (!cannonballPickupTriggered)
+        {
+            cannonballPickupTriggered = true;
+            SetState(GameState.CannonballPickedUp);
+        }
     }
 
     public void OneShipHit()
@@ -65,5 +70,10 @@ public class GameStateManager : MonoBehaviour
     public void ThreeShipsHit()
     {
         SetState(GameState.ThreeShipsHit);
+    }
+
+    public void LostBattle()
+    {
+        SetState(GameState.LostBattle);
     }
 }
