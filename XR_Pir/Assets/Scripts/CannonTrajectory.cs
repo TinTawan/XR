@@ -14,7 +14,7 @@ public class CannonTrajectory : MonoBehaviour
 
         for (int i = 1; i < lineSegments; i++)
         {
-            float t = (i / (float)lineSegments) * 3f;
+            float t = (i / (float)lineSegments) * 5f;
             lineRendererPoints[i] = startPoint + startVelocity * t + (Vector3.up * (0.5f * Physics.gravity.y * t * t));     // calculates trajectory of cannon ball when gravity is applied
         }
 
