@@ -876,7 +876,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 110
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!1 &115474479
 GameObject:
@@ -1940,15 +1940,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7855221736650526106, guid: ab00dd2908e0fee4799c5dcf0d1276c4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -39.962
+      value: -39.964
       objectReference: {fileID: 0}
     - target: {fileID: 7855221736650526106, guid: ab00dd2908e0fee4799c5dcf0d1276c4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9.299
+      value: 9.285
       objectReference: {fileID: 0}
     - target: {fileID: 7855221736650526106, guid: ab00dd2908e0fee4799c5dcf0d1276c4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 103.622
+      value: 103.617
       objectReference: {fileID: 0}
     - target: {fileID: 7855221736650526106, guid: ab00dd2908e0fee4799c5dcf0d1276c4, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3839,65 +3839,6 @@ Transform:
   - {fileID: 47255438}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &473295808
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 473295809}
-  - component: {fileID: 473295810}
-  m_Layer: 0
-  m_Name: WheelPivot
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &473295809
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 473295808}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.6792145, y: -0.2483501, z: -0.2004}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1481046272}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &473295810
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 473295808}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &493852433
 GameObject:
   m_ObjectHideFlags: 0
@@ -4981,6 +4922,7 @@ GameObject:
   - component: {fileID: 652556517}
   - component: {fileID: 652556516}
   - component: {fileID: 652556515}
+  - component: {fileID: 652556519}
   m_Layer: 0
   m_Name: Post
   m_TagString: Untagged
@@ -5074,6 +5016,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1481046272}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &652556519
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 652556514}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &653639721
 GameObject:
   m_ObjectHideFlags: 0
@@ -8870,7 +8839,7 @@ HingeJoint:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1422124511}
-  m_ConnectedBody: {fileID: 473295810}
+  m_ConnectedBody: {fileID: 652556519}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
@@ -9673,7 +9642,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 652556518}
-  - {fileID: 473295809}
   - {fileID: 1422124514}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
