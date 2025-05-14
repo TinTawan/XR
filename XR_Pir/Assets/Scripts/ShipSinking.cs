@@ -10,6 +10,15 @@ public class ShipSinking : MonoBehaviour
 
     private static int shipsHitCount = 0;
 
+    void Awake()
+    {
+        oneShipHitPlayed = false;
+        twoShipsHitPlayed = false;
+        threeShipsHitPlayed = false;
+
+        shipsHitCount = 0;
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("CannonBall"))
