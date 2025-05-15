@@ -5,18 +5,20 @@ using TMPro;
 using UnityEngine.SceneManagement;
 
 public class Countdown : MonoBehaviour
-{
+{   
+    public Canvas canvas;
+    
     public TMP_Text countdownText;
     public float timeLeft;
-    public Canvas countdownCanvas;
-
     private bool countdownActive = false;
+
+    public TMP_Text shipsHitText;
 
     [SerializeField] float loseDialogueLength = 11f, winDialogueLength = 10f;
 
     void Start()
     {
-        countdownCanvas.gameObject.SetActive(false);
+        canvas.gameObject.SetActive(false);
     }
 
     void Update()
@@ -26,8 +28,19 @@ public class Countdown : MonoBehaviour
             StartCountdown();
         }
 
+        if (GameStateManager.Instance.CurrentState == GameState.OneShipHit)
+        {
+            shipsHitText.text = "Ships Hit: 1/3";
+        }
+
+        if(GameStateManager.Instance.CurrentState == GameState.TwoShipsHit)
+        {
+            shipsHitText.text = "Ships Hit: 2/3";
+        }
+
         if (GameStateManager.Instance.CurrentState == GameState.ThreeShipsHit)
         {
+            shipsHitText.text = "Ships Hit: 3/3";
             countdownActive = false;
 
             //win so reset scene after dialogue
@@ -54,13 +67,12 @@ public class Countdown : MonoBehaviour
 
     void StartCountdown()
     {
+        canvas.gameObject.SetActive(true);
         countdownActive = true;
-        countdownCanvas.gameObject.SetActive(true);
     }
 
     void ResetScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
-
 }
