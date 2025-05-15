@@ -11,9 +11,18 @@ public class MenuTrigger : MonoBehaviour
     private bool canvasHidden = false;
     private float startRotation;
 
+    public GameObject limitMovementColliders;
+    public bool collidersInactive = false;
+
+    public GameObject spyglassObject;
+    private UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable xrGrabInteractable;
+
     void Start()
     {
         startRotation = wheelTransform.eulerAngles.y;
+
+        xrGrabInteractable = spyglassObject.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
+        xrGrabInteractable.enabled = false;     // disables player from picking up spyglass before turning wheel
     }
 
     void Update()
@@ -30,11 +39,16 @@ public class MenuTrigger : MonoBehaviour
             wheelRotation += 360;
         }
 
-        if (!canvasHidden && Mathf.Abs(wheelRotation) >= rotationThreshold)
+        if (!canvasHidden && !collidersInactive && Mathf.Abs(wheelRotation) >= rotationThreshold)
         {
             canvas.SetActive(false);
             canvasHidden = true;
             GameStateManager.Instance.WheelTurned();
+
+            limitMovementColliders.SetActive(false);
+            collidersInactive = true;
+
+            xrGrabInteractable.enabled = true;
         }
     }
 }
