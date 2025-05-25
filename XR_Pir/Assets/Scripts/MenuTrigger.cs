@@ -10,6 +10,7 @@ public class MenuTrigger : MonoBehaviour
     public float rotationThreshold = 90f;
     private bool canvasHidden = false;
     private float startRotation;
+    public GameObject wheelAffordance;
 
     public GameObject limitMovementColliders;
     public bool collidersInactive = false;
@@ -44,6 +45,7 @@ public class MenuTrigger : MonoBehaviour
             canvas.SetActive(false);
             canvasHidden = true;
             GameStateManager.Instance.WheelTurned();
+            wheelAffordance.SetActive(false);
 
             limitMovementColliders.SetActive(false);
             collidersInactive = true;

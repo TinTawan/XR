@@ -32,6 +32,7 @@ public class Telescope : MonoBehaviour
     IXRSelectInteractable telescopeInteractable;
     
     bool hasPlayed = false; // playing telescope audio once
+    public GameObject limitStairs;
     
     [SerializeField] LayerMask zoomExcludeLayer;
 
@@ -112,6 +113,8 @@ public class Telescope : MonoBehaviour
     {
         if (col.CompareTag("Telescope"))
         {
+            limitStairs.SetActive(false);
+
             zoomed = true;
             telescope = col.gameObject;
             telescopeMeshes = telescope.transform.parent.GetComponentsInChildren<MeshRenderer>();
