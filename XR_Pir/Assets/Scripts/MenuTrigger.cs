@@ -15,6 +15,7 @@ public class MenuTrigger : MonoBehaviour
     public GameObject wheelArrow;
     public GameObject limitMovementColliders;
     public bool collidersInactive = false;
+    public GameObject rightControllerCanvas, leftControllerCanvas;
 
     public GameObject spyglassObject;
     private UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable xrGrabInteractable;
@@ -51,6 +52,8 @@ public class MenuTrigger : MonoBehaviour
             wheelArrow.SetActive(false);
             limitMovementColliders.SetActive(false);
             collidersInactive = true;
+            rightControllerCanvas.SetActive(false);
+            leftControllerCanvas.SetActive(false);
 
             xrGrabInteractable.enabled = true;
         }
