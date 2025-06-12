@@ -3206,7 +3206,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -28.8, y: -146.4}
+  m_AnchoredPosition: {x: -10.799988, y: -155.3}
   m_SizeDelta: {x: 1282, y: 552}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &262524654
@@ -4887,7 +4887,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultHeight: 1
   cameraOffset: {fileID: 1048589886}
-  mainCamera: {fileID: 0}
+  mainCamera: {fileID: 1935614132}
 --- !u!1 &540096548
 GameObject:
   m_ObjectHideFlags: 0
@@ -8716,7 +8716,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -41.600006, y: -168.80008}
+  m_AnchoredPosition: {x: -23.6, y: -177.7}
   m_SizeDelta: {x: 1282, y: 552}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1095355343
