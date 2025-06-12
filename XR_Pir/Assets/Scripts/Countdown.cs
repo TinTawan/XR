@@ -30,17 +30,17 @@ public class Countdown : MonoBehaviour
 
         if (GameStateManager.Instance.CurrentState == GameState.OneShipHit)
         {
-            shipsHitText.text = "Ships Hit: 1/3";
+            shipsHitText.text = "Ships Hit: 1 / 3";
         }
 
         if(GameStateManager.Instance.CurrentState == GameState.TwoShipsHit)
         {
-            shipsHitText.text = "Ships Hit: 2/3";
+            shipsHitText.text = "Ships Hit: 2 / 3";
         }
 
         if (GameStateManager.Instance.CurrentState == GameState.ThreeShipsHit)
         {
-            shipsHitText.text = "Ships Hit: 3/3";
+            shipsHitText.text = "Ships Hit: 3 / 3";
             countdownActive = false;
 
             //win so reset scene after dialogue
