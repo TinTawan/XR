@@ -2712,6 +2712,7 @@ MonoBehaviour:
   zoomMultTest: 2.5
   zoomSmoothMove: 0.15
   camClipLength: 1
+  limitStairs: {fileID: 0}
   zoomExcludeLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -5740,7 +5741,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a30199e4bb7544040a5ff3cdb0409d11, type: 2}
+  - {fileID: 2100000, guid: 511ffc1d323368e4eb24e3eb7b99bbad, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
