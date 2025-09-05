@@ -38,11 +38,11 @@ Material:
     m_Ints: []
     m_Floats:
     - _FoamCutOff: 7
-    - _FoamEdgeAmount: 0.43
+    - _FoamEdgeAmount: 0.4
     - _FoamRadialCutOff: 0
     - _FoamScale: 20.7
     - _FoamSpeed: 0.005
-    - _PixelationValue: 4.73
+    - _PixelationValue: 0.5
     - _QueueControl: 0
     - _QueueOffset: 0
     - _RefractionScale: 1.46
