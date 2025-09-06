@@ -5465,6 +5465,11 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 2.5461798, z: 1}
   m_Center: {x: 0, y: 0.7730899, z: 0}
+--- !u!4 &557159898 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 76526feadd38e5f4e81bec6ae70543db, type: 3}
+  m_PrefabInstance: {fileID: 163533375}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &561669525
 GameObject:
   m_ObjectHideFlags: 0
@@ -10640,6 +10645,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1414902536}
+  - component: {fileID: 1414902537}
   m_Layer: 0
   m_Name: BlackbeardMovePositions
   m_TagString: Untagged
@@ -10664,6 +10670,30 @@ Transform:
   - {fileID: 405465857}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1414902537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1414902535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ff318000db3ab24ab156703f8e1eef7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 512864533}
+  npc: {fileID: 557159898}
+  npcTransforms:
+  - {fileID: 620841649}
+  - {fileID: 1559468467}
+  - {fileID: 2129863684}
+  - {fileID: 1356147664}
+  - {fileID: 694253680}
+  - {fileID: 1155812198}
+  - {fileID: 500870585}
+  upperDeckPositions: {fileID: 1790760955}
+  lowerDeckPositions: {fileID: 405465856}
 --- !u!1 &1415823450
 GameObject:
   m_ObjectHideFlags: 0
