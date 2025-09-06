@@ -48,11 +48,11 @@ Material:
     - _RefractionScale: 1.46
     - _RefractionSpeed: 0.81
     - _RefractionStrength: 2.67
-    - _WaterDepth: 1.26
+    - _WaterDepth: 5.62
     m_Colors:
     - _DeepColour: {r: 0.19873619, g: 0.20929867, b: 0.5471698, a: 1}
-    - _FoamColour: {r: 0.6468049, g: 0.7760398, b: 0.8018868, a: 1}
-    - _ShallowColour: {r: 0.06247775, g: 0.42941058, b: 0.49056602, a: 1}
+    - _FoamColour: {r: 0.36378607, g: 0.3710232, b: 0.7075472, a: 1}
+    - _ShallowColour: {r: 0.14386791, g: 0.31955975, b: 0.5, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &680050073443231285
 MonoBehaviour:
