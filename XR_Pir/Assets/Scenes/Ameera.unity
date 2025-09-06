@@ -10684,10 +10684,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 512864533}
   npc: {fileID: 557159898}
-  npcTransforms:
+  upperDeckTransforms:
   - {fileID: 620841649}
   - {fileID: 1559468467}
   - {fileID: 2129863684}
+  lowerDeckTransforms:
   - {fileID: 1356147664}
   - {fileID: 694253680}
   - {fileID: 1155812198}
