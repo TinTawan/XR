@@ -7,9 +7,7 @@ public class NPC_MoveToPlayer : MonoBehaviour
     [SerializeField] Transform player, npc;
 
     [SerializeField] List<Transform> upperDeckTransforms = new List<Transform>(), lowerDeckTransforms = new List<Transform>();
-    [SerializeField] GameObject upperDeckPositions, lowerDeckPositions;
     Transform startTransform;
-
 
     List<Transform> enabledDeckTransforms;
 
@@ -30,6 +28,9 @@ public class NPC_MoveToPlayer : MonoBehaviour
         {
             EnableDeck(1);
         }
+
+        npc.transform.position = ReturnNPCPosition(enabledDeckTransforms);
+
     }
 
 
@@ -65,18 +66,24 @@ public class NPC_MoveToPlayer : MonoBehaviour
         }
     }
 
-    Transform ShortestDistance(List<Transform> enabledTransforms)
+    Vector3 ReturnNPCPosition(List<Transform> enabledTransforms)
     {
         Transform closestItem = null;
-        float shortest = Mathf.Infinity;
+        float minDist = Mathf.Infinity;
 
-        foreach(Transform item in enabledTransforms)
+        foreach (Transform item in enabledTransforms)
         {
-            //Vector3.Distance(player.position, item.position);
-            shortest = Mathf.Min(shortest, Vector3.Distance(player.position, item.position));
-            closestItem = item;
+            float distance = Vector3.Distance(item.position, player.position);
+
+            if (distance < minDist)
+            {
+                closestItem = item;
+                minDist = distance;
+                Debug.Log($"closest item: {closestItem.gameObject.name} distance: {distance}");
+            }
         }
 
-        return closestItem;
+        return closestItem.position;
     }
+
 }
