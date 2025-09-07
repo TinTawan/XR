@@ -66,6 +66,7 @@ public class NPC_MoveToPlayer : MonoBehaviour
         }
     }
 
+    //gets the closest of the enabled points for the npc to teleport to
     Vector3 ReturnNPCPosition(List<Transform> enabledTransforms)
     {
         Transform closestItem = null;
@@ -79,7 +80,6 @@ public class NPC_MoveToPlayer : MonoBehaviour
             {
                 closestItem = item;
                 minDist = distance;
-                Debug.Log($"closest item: {closestItem.gameObject.name} distance: {distance}");
             }
         }
 
