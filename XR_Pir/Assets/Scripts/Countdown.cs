@@ -18,15 +18,16 @@ public class Countdown : MonoBehaviour
     [SerializeField] float loseDialogueLength = 11f, winDialogueLength = 10f;
 
     [Header("End game UI and restarting the game")]
-    [SerializeField] Animator endgameUI;
+    [SerializeField] GameObject endGameUIObject;
+    [SerializeField] Animator endgameUIAnim;
     [SerializeField] MeshRenderer yButtonMeshRend;
     [SerializeField] GameObject locoTurn, locoMove;
 
     void Start()
     {
         canvas.gameObject.SetActive(false);
+        endGameUIObject.SetActive(false);
 
-        EndOfGame();
     }
 
     void Update()
@@ -52,7 +53,10 @@ public class Countdown : MonoBehaviour
             countdownActive = false;
 
             //win so reset scene after dialogue
-            Invoke(nameof(ResetScene), winDialogueLength);
+            //Invoke(nameof(ResetScene), winDialogueLength);
+
+            //show end game ui after dialoge finishes
+            Invoke(nameof(EndOfGame), winDialogueLength);
         }
 
         if (timeLeft > 0 && countdownActive)
@@ -64,7 +68,11 @@ public class Countdown : MonoBehaviour
                 GameStateManager.Instance.SetState(GameState.LostBattle);
 
                 //lose so reset scene after dialogue
-                Invoke(nameof(ResetScene), loseDialogueLength);
+                //Invoke(nameof(ResetScene), loseDialogueLength);
+
+                //show end game ui after dialoge finishes
+                Invoke(nameof(EndOfGame), loseDialogueLength);
+
             }
 
             int minutes = Mathf.FloorToInt(timeLeft / 60);
@@ -86,7 +94,8 @@ public class Countdown : MonoBehaviour
 
     void EndOfGame()
     {
-        endgameUI.Play("EndUIFade");
+        endGameUIObject.SetActive(true);
+        endgameUIAnim.Play("EndUIFade");
         yButtonMeshRend.material.color = Color.yellow;
 
         locoTurn.SetActive(false);
