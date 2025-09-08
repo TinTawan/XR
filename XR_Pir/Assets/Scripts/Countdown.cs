@@ -22,6 +22,7 @@ public class Countdown : MonoBehaviour
     [SerializeField] Animator endgameUIAnim;
     [SerializeField] MeshRenderer yButtonMeshRend;
     [SerializeField] GameObject locoTurn, locoMove;
+    [SerializeField] GameObject[] shipItems;
 
     void Start()
     {
@@ -98,8 +99,21 @@ public class Countdown : MonoBehaviour
         endgameUIAnim.Play("EndUIFade");
         yButtonMeshRend.material.color = Color.yellow;
 
+        Invoke(nameof(HideShip), 1.25f);
+        
         locoTurn.SetActive(false);
         locoMove.SetActive(false);
 
+    }
+
+    void HideShip()
+    {
+        foreach (GameObject go in shipItems)
+        {
+            foreach (MeshRenderer mr in go.GetComponentsInChildren<MeshRenderer>())
+            {
+                mr.enabled = false;
+            }
+        }
     }
 }
