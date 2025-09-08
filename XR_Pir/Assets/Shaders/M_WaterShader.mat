@@ -37,9 +37,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _FoamCutOff: 5.1
-    - _FoamEdgeAmount: -0.01
+    - _FoamCutOff: 6.24
+    - _FoamEdgeAmount: -0.012
     - _FoamRadialCutOff: 0
+    - _FoamRadius: -0.13
+    - _FoamRadiusFade: 0.1
     - _FoamScale: 20.7
     - _FoamSpeed: 0.0075
     - _PixelationValue: 0.2
