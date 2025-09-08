@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class Countdown : MonoBehaviour
 {   
@@ -16,9 +17,18 @@ public class Countdown : MonoBehaviour
 
     [SerializeField] float loseDialogueLength = 11f, winDialogueLength = 10f;
 
+    [Header("End game UI and restarting the game")]
+    [SerializeField] GameObject endGameUIObject;
+    [SerializeField] Animator endgameUIAnim;
+    [SerializeField] MeshRenderer yButtonMeshRend;
+    [SerializeField] GameObject locoTurn, locoMove;
+    [SerializeField] GameObject[] shipItems;
+
     void Start()
     {
         canvas.gameObject.SetActive(false);
+        endGameUIObject.SetActive(false);
+
     }
 
     void Update()
@@ -44,7 +54,10 @@ public class Countdown : MonoBehaviour
             countdownActive = false;
 
             //win so reset scene after dialogue
-            Invoke(nameof(ResetScene), winDialogueLength);
+            //Invoke(nameof(ResetScene), winDialogueLength);
+
+            //show end game ui after dialoge finishes
+            Invoke(nameof(EndOfGame), winDialogueLength);
         }
 
         if (timeLeft > 0 && countdownActive)
@@ -56,7 +69,11 @@ public class Countdown : MonoBehaviour
                 GameStateManager.Instance.SetState(GameState.LostBattle);
 
                 //lose so reset scene after dialogue
-                Invoke(nameof(ResetScene), loseDialogueLength);
+                //Invoke(nameof(ResetScene), loseDialogueLength);
+
+                //show end game ui after dialoge finishes
+                Invoke(nameof(EndOfGame), loseDialogueLength);
+
             }
 
             int minutes = Mathf.FloorToInt(timeLeft / 60);
@@ -74,5 +91,29 @@ public class Countdown : MonoBehaviour
     void ResetScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    void EndOfGame()
+    {
+        endGameUIObject.SetActive(true);
+        endgameUIAnim.Play("EndUIFade");
+        yButtonMeshRend.material.color = Color.yellow;
+
+        Invoke(nameof(HideShip), 1.25f);
+        
+        locoTurn.SetActive(false);
+        locoMove.SetActive(false);
+
+    }
+
+    void HideShip()
+    {
+        foreach (GameObject go in shipItems)
+        {
+            foreach (MeshRenderer mr in go.GetComponentsInChildren<MeshRenderer>())
+            {
+                mr.enabled = false;
+            }
+        }
     }
 }

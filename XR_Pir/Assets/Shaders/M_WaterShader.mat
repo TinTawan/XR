@@ -14,9 +14,9 @@ Material:
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
+  m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 2450
   stringTagMap: {}
   disabledShaderPasses: []
   m_LockedProperties: 
@@ -37,22 +37,24 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _FoamCutOff: 7
-    - _FoamEdgeAmount: 0.4
+    - _FoamCutOff: 6.24
+    - _FoamEdgeAmount: -0.012
     - _FoamRadialCutOff: 0
+    - _FoamRadius: -0.13
+    - _FoamRadiusFade: 0.1
     - _FoamScale: 20.7
-    - _FoamSpeed: 0.005
-    - _PixelationValue: 0.5
+    - _FoamSpeed: 0.0075
+    - _PixelationValue: 0.2
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _RefractionScale: 1.46
-    - _RefractionSpeed: 0.81
-    - _RefractionStrength: 2.67
+    - _RefractionScale: 1.92
+    - _RefractionSpeed: 3.33
+    - _RefractionStrength: 4.27
     - _WaterDepth: 5.62
     m_Colors:
     - _DeepColour: {r: 0.19873619, g: 0.20929867, b: 0.5471698, a: 1}
     - _FoamColour: {r: 0.36378607, g: 0.3710232, b: 0.7075472, a: 1}
-    - _ShallowColour: {r: 0.14386791, g: 0.31955975, b: 0.5, a: 1}
+    - _ShallowColour: {r: 0.20000002, g: 0.20784315, b: 0.54901963, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &680050073443231285
 MonoBehaviour:
