@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class Countdown : MonoBehaviour
 {   
@@ -16,9 +17,16 @@ public class Countdown : MonoBehaviour
 
     [SerializeField] float loseDialogueLength = 11f, winDialogueLength = 10f;
 
+    [Header("End game UI and restarting the game")]
+    [SerializeField] Animator endgameUI;
+    [SerializeField] MeshRenderer yButtonMeshRend;
+    [SerializeField] GameObject locoTurn, locoMove;
+
     void Start()
     {
         canvas.gameObject.SetActive(false);
+
+        EndOfGame();
     }
 
     void Update()
@@ -74,5 +82,15 @@ public class Countdown : MonoBehaviour
     void ResetScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    void EndOfGame()
+    {
+        endgameUI.Play("EndUIFade");
+        yButtonMeshRend.material.color = Color.yellow;
+
+        locoTurn.SetActive(false);
+        locoMove.SetActive(false);
+
     }
 }
