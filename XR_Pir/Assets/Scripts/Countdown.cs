@@ -1,14 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.InputSystem;
 
 public class Countdown : MonoBehaviour
-{   
+{
     public Canvas canvas;
-    
+
     public TMP_Text countdownText;
     public float timeLeft;
     private bool countdownActive = false;
@@ -43,7 +40,7 @@ public class Countdown : MonoBehaviour
             shipsHitText.text = "Ships Hit: 1 / 3";
         }
 
-        if(GameStateManager.Instance.CurrentState == GameState.TwoShipsHit)
+        if (GameStateManager.Instance.CurrentState == GameState.TwoShipsHit)
         {
             shipsHitText.text = "Ships Hit: 2 / 3";
         }
@@ -100,7 +97,7 @@ public class Countdown : MonoBehaviour
         yButtonMeshRend.material.color = Color.yellow;
 
         Invoke(nameof(HideShip), 1.25f);
-        
+
         locoTurn.SetActive(false);
         locoMove.SetActive(false);
 
