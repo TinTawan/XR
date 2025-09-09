@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum GameState { GameStart, Introduction, TelescopePickedUp, Idle1, Idle2, Idle3, Idle4, ShipSpotted, CannonballPickedUp, OneShipHit, TwoShipsHit, ThreeShipsHit, LostBattle }
+public enum GameState { GameStart, Introduction, TelescopePickedUp, Idle1, Idle2, Idle3, Idle4, ShipSpotted, CannonballPickedUp, OneShipHit, TwoShipsHit, ThreeShipsHit, LostBattle, PreGame }
 
 public class GameStateManager : MonoBehaviour
 {
@@ -21,10 +21,11 @@ public class GameStateManager : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(SceneLoaded());
+        SetState(GameState.PreGame);
+        //StartCoroutine(SceneLoaded());
     }
 
-    IEnumerator SceneLoaded()
+    public IEnumerator SceneLoaded()
     {
         yield return new WaitForSeconds(3f);    // allows the scene to load before playing voiceline
         SetState(GameState.GameStart);
@@ -45,7 +46,7 @@ public class GameStateManager : MonoBehaviour
     public void SetState(GameState newState)
     {
         if (newState != GameState.Idle1 && newState != GameState.Idle2 && newState != GameState.Idle3 && newState != GameState.Idle4)
-            {
+        {
             idleTimer = 0f;     // reset idle timer
         }
 
