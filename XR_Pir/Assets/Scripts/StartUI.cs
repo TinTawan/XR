@@ -28,7 +28,6 @@ public class StartUI : MonoBehaviour
 
     private void AnyButtonPressed_Performed(InputAction.CallbackContext ctx)
     {    
-        Debug.Log($"Pressed: {ctx.action.name}");
         
         if (!gameStarted)
         {

@@ -35,10 +35,13 @@ public class GameStateManager : MonoBehaviour
     {
         if (CurrentState != GameState.Idle1 && CurrentState != GameState.Idle2 && CurrentState != GameState.Idle3 && CurrentState != GameState.Idle4)
         {
-            idleTimer += Time.deltaTime;
-            if (idleTimer >= idleThreshold)
+            if(CurrentState != GameState.PreGame)
             {
-                TriggerIdleState();
+                idleTimer += Time.deltaTime;
+                if (idleTimer >= idleThreshold)
+                {
+                    TriggerIdleState();
+                }
             }
         }
     }
