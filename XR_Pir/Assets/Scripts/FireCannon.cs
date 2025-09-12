@@ -166,7 +166,7 @@ public class FireCannon : MonoBehaviour
 
         yield return new WaitForSeconds(fuseTime);
 
-        cannonFuse.DisableFuse();
+        //cannonFuse.DisableFuse();
 
         if (thisCannonball != null)
         {

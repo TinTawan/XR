@@ -36,15 +36,16 @@ public class CannonFuse : MonoBehaviour
     {
         if (lc.isLoaded)
         {
-            grab.enabled = true;
-            fuseCol.enabled = true;
+            IsFuseEnabled(true);
 
             //instead of EnableCannonPivot in Fire()
             knob.enabled = true;
         }
         else
         {
-            DisableFuse();
+            IsFuseEnabled(false);
+
+            knob.enabled = false;
         }
 
         if (fusePulled)
@@ -78,10 +79,10 @@ public class CannonFuse : MonoBehaviour
         OnFusePulled?.Invoke();
 
         //DisableFuse();
-        Invoke(nameof(DisableFuse), 2f);
+        //Invoke(nameof(DisableFuse), 2f);
         //Invoke(nameof(EnableCannonPivot), 2.5f);
         //EnableCannonPivot();
-        Invoke(nameof(ResetFusePulled), 2f);
+        Invoke(nameof(ResetFusePulled), 1f);
         //ResetFusePulled();
     }
     /*public bool GetFusePulled()
@@ -94,10 +95,10 @@ public class CannonFuse : MonoBehaviour
         fusePulled = false;
     }
 
-    public void DisableFuse()
+    public void IsFuseEnabled(bool inBool)
     {
-        grab.enabled = false;
-        fuseCol.enabled = false;
+        grab.enabled = inBool;
+        fuseCol.enabled = inBool;
 
     }
 
