@@ -6105,17 +6105,9 @@ PrefabInstance:
       value: Cannon (1)
       objectReference: {fileID: 0}
     - target: {fileID: 2229403641348182359, guid: 1e851ec639bd90546a1c4abc878d2776, type: 3}
-      propertyPath: fireStrength
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 2229403641348182359, guid: 1e851ec639bd90546a1c4abc878d2776, type: 3}
       propertyPath: cannonballSpawnPos
       value: 
       objectReference: {fileID: 752150122}
-    - target: {fileID: 3697999052512699214, guid: 1e851ec639bd90546a1c4abc878d2776, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 6830879038111881590, guid: 1e851ec639bd90546a1c4abc878d2776, type: 3}
       propertyPath: m_LocalPosition.x
       value: -38.212

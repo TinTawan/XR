@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
@@ -14,6 +15,7 @@ public class CannonFuse : MonoBehaviour
 
     Collider fuseCol;
 
+    public event Action OnFusePulled;
 
     private void Start()
     {
@@ -64,20 +66,32 @@ public class CannonFuse : MonoBehaviour
         }
     }
 
-    public void SetFusePulled(bool pulled)
+    public void FusePulled()
     {
-        fusePulled = pulled;
+        if (fusePulled) return;
 
-        if (pulled)
-        {
-            Invoke(nameof(DisableFuse), 2f);
-            Invoke(nameof(EnableCannonPivot), 3f);
+        CancelInvoke(nameof(DisableFuse));
+        CancelInvoke(nameof(EnableCannonPivot));
+        CancelInvoke(nameof(ResetFusePulled));
 
-        }
+        fusePulled = true;
+
+        OnFusePulled?.Invoke();
+        Debug.Log("[CannonFuse] Fuse pulled");
+
+        Invoke(nameof(DisableFuse), 2f);
+        Invoke(nameof(EnableCannonPivot), 2.5f);
+        Invoke(nameof(ResetFusePulled), 3f);
+        //ResetFusePulled();
     }
-    public bool GetFusePulled()
+    /*public bool GetFusePulled()
     {
         return fusePulled;
+    }*/
+
+    void ResetFusePulled()
+    {
+        fusePulled = false;
     }
 
     void DisableFuse()
