@@ -23,6 +23,10 @@ public class ShipSinking : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("CannonBall"))
         {
+            //stop ship being hit again and counting to score when its already sank
+            GetComponent<Collider>().enabled = false;
+
+            //increment score
             shipsHitCount++;
 
             GetComponent<ShipPath>().StopMovement();
