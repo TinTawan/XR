@@ -55,20 +55,11 @@ public class FireCannon : MonoBehaviour
             //move forward to loaded position
             MoveBaseForward();
 
-            // displays trajectory
+            //displays trajectory
             cannonTrajectory.EnableTrajectory(true);
             cannonTrajectory.ShowTrajectoryLine(firePoint.position, firePoint.forward * fireStrength);
 
             thisCannonball = loadCannon.GetCannonBall();
-
-            /*if (cannonFuse.GetFusePulled())
-            {
-                StartCoroutine(Fire());
-                cannonFuse.SetFusePulled(false);
-
-                //Instantiate(fusePS, fusePSPos.position, Quaternion.identity, transform);
-                ObjectPoolingManager.SpawnObject(fusePS, fusePSPos.position, Quaternion.identity);
-            }*/
         }
     }
 
@@ -78,6 +69,7 @@ public class FireCannon : MonoBehaviour
         {
             StartCoroutine(Fire());
             ObjectPoolingManager.SpawnObject(fusePS, fusePSPos.position, Quaternion.identity);
+
         }
     }
 
@@ -158,29 +150,27 @@ public class FireCannon : MonoBehaviour
     {
         if (isFiring)
         {
-            Debug.LogWarning("[FireCannon] Fire() called while already firing!");
             yield break;
         }
         isFiring = true;
 
         if (thisCannonball == null)
         {
-            Debug.LogWarning("[FireCannon] Tried to fire but no cannonball assigned!");
             isFiring = false;
             yield break;
         }
 
-        loadCannon.isLoaded = false; // stop LoadCannon.Update() from pinning the ball
+        loadCannon.isLoaded = false;
 
         FindObjectOfType<AudioManager>().AudioTrigger(AudioManager.SoundFXCat.CannonTriggered, transform.position, 0.1f);
 
-        Debug.Log($"[FireCannon] Fuse lit for {thisCannonball.name} at {Time.time}");
-
         yield return new WaitForSeconds(fuseTime);
+
+        cannonFuse.DisableFuse();
 
         if (thisCannonball != null)
         {
-            // Detach from cannon
+            //detach from cannon
             thisCannonball.transform.SetParent(null);
 
             Rigidbody rb = thisCannonball.GetComponent<Rigidbody>();
@@ -189,52 +179,47 @@ public class FireCannon : MonoBehaviour
             rb.angularVelocity = Vector3.zero;
 
             if (thisCannonball.TryGetComponent(out SphereCollider col))
+            {
                 col.enabled = true;
+            }
 
-            Debug.Log($"[FireCannon] Re-enabled physics on {thisCannonball.name} at {Time.time}");
-
-            // Fire effects
             FindObjectOfType<AudioManager>().AudioTrigger(AudioManager.SoundFXCat.CannonLaunch, transform.position, 0.1f);
-
             ObjectPoolingManager.SpawnObject(smokePS, smokePSPos.position, Quaternion.identity);
 
-            // Fire instantly
+            //fire cannon
             rb.AddForce(firePoint.forward * fireStrength, ForceMode.Impulse);
-            Debug.Log($"[FireCannon] Force applied to {thisCannonball.name} at {Time.time}");
 
-            // Cannon recoil
+            //cannon kick back
             baseRB.isKinematic = false;
             baseRB.AddForce(transform.forward * baseBackFireStrength, ForceMode.Impulse);
         }
-        else
-        {
-            Debug.LogWarning("[FireCannon] Cannonball reference lost before firing!");
-        }
 
-        // Allow cannon collider again
+        //enable cannon collider
         yield return new WaitForSeconds(1f);
         if (loadCannon.TryGetComponent(out BoxCollider bc))
+        {
             bc.enabled = true;
+        }
 
-        // disable trajectory
+        //disable trajectory
         cannonTrajectory.EnableTrajectory(false);
         baseRB.isKinematic = true;
 
-        // Pool ball after 5s if still valid
+        //pool cannonball if still valid
         if (thisCannonball != null)
         {
             GameObject firedBall = thisCannonball;
             thisCannonball = null; // clear our reference
 
             yield return new WaitForSeconds(5f);
-            Debug.Log($"[FireCannon] Returning {firedBall.name} to pool at {Time.time}");
             ReturnCannonballToPool(firedBall);
         }
 
-        // Spawn a fresh cannonball to grab
+        //fpawn new cannonball in barrel
         ObjectPoolingManager.SpawnObject(cannonballPrefab, cannonballSpawnPos.position, Quaternion.identity);
 
-        // Finished firing
+        //finished firing
+        //cannonFuse.EnableCannonPivot();
         isFiring = false;
     }
 

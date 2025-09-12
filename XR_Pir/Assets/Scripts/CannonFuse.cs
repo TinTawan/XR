@@ -38,6 +38,9 @@ public class CannonFuse : MonoBehaviour
         {
             grab.enabled = true;
             fuseCol.enabled = true;
+
+            //instead of EnableCannonPivot in Fire()
+            knob.enabled = true;
         }
         else
         {
@@ -70,18 +73,15 @@ public class CannonFuse : MonoBehaviour
     {
         if (fusePulled) return;
 
-        CancelInvoke(nameof(DisableFuse));
-        CancelInvoke(nameof(EnableCannonPivot));
-        CancelInvoke(nameof(ResetFusePulled));
-
         fusePulled = true;
 
         OnFusePulled?.Invoke();
-        Debug.Log("[CannonFuse] Fuse pulled");
 
+        //DisableFuse();
         Invoke(nameof(DisableFuse), 2f);
-        Invoke(nameof(EnableCannonPivot), 2.5f);
-        Invoke(nameof(ResetFusePulled), 3f);
+        //Invoke(nameof(EnableCannonPivot), 2.5f);
+        //EnableCannonPivot();
+        Invoke(nameof(ResetFusePulled), 2f);
         //ResetFusePulled();
     }
     /*public bool GetFusePulled()
@@ -94,14 +94,14 @@ public class CannonFuse : MonoBehaviour
         fusePulled = false;
     }
 
-    void DisableFuse()
+    public void DisableFuse()
     {
         grab.enabled = false;
         fuseCol.enabled = false;
 
     }
 
-    void EnableCannonPivot()
+    public void EnableCannonPivot()
     {
         knob.enabled = true;
 
