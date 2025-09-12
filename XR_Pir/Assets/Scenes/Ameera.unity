@@ -9033,6 +9033,8 @@ MonoBehaviour:
   locoMove: {fileID: 117247475}
   lNearFarInteractor: {fileID: 1794366258}
   rNearFarInteractor: {fileID: 1644220312}
+  lControllerCanvas: {fileID: 686733935}
+  rControllerCanvas: {fileID: 1925107184}
   menuFadeAnim: {fileID: 1188600373}
   primaryRef: {fileID: 3900808978451944655, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   secondaryRef: {fileID: -4643074293779489001, guid: c348712bda248c246b8c49b3db54643f, type: 3}
@@ -16386,13 +16388,13 @@ SceneRoots:
   - {fileID: 733792441}
   - {fileID: 164285241}
   - {fileID: 1519105440}
+  - {fileID: 911669267}
   - {fileID: 1995681127}
   - {fileID: 108145439}
   - {fileID: 1758263626}
   - {fileID: 1214517561}
   - {fileID: 1941172471}
   - {fileID: 1235328024}
-  - {fileID: 911669267}
   - {fileID: 568892715}
   - {fileID: 1589998377}
   - {fileID: 2067797074}
