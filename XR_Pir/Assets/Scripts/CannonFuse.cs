@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
@@ -14,6 +15,7 @@ public class CannonFuse : MonoBehaviour
 
     Collider fuseCol;
 
+    public event Action OnFusePulled;
 
     private void Start()
     {
@@ -34,12 +36,16 @@ public class CannonFuse : MonoBehaviour
     {
         if (lc.isLoaded)
         {
-            grab.enabled = true;
-            fuseCol.enabled = true;
+            IsFuseEnabled(true);
+
+            //instead of EnableCannonPivot in Fire()
+            knob.enabled = true;
         }
         else
         {
-            DisableFuse();
+            IsFuseEnabled(false);
+
+            knob.enabled = false;
         }
 
         if (fusePulled)
@@ -64,30 +70,39 @@ public class CannonFuse : MonoBehaviour
         }
     }
 
-    public void SetFusePulled(bool pulled)
+    public void FusePulled()
     {
-        fusePulled = pulled;
+        if (fusePulled) return;
 
-        if (pulled)
-        {
-            Invoke(nameof(DisableFuse), 2f);
-            Invoke(nameof(EnableCannonPivot), 3f);
+        fusePulled = true;
 
-        }
+        OnFusePulled?.Invoke();
+
+        //DisableFuse();
+        //Invoke(nameof(DisableFuse), 2f);
+        //Invoke(nameof(EnableCannonPivot), 2.5f);
+        //EnableCannonPivot();
+        Invoke(nameof(ResetFusePulled), 1f);
+        //ResetFusePulled();
     }
-    public bool GetFusePulled()
+    /*public bool GetFusePulled()
     {
         return fusePulled;
-    }
+    }*/
 
-    void DisableFuse()
+    void ResetFusePulled()
     {
-        grab.enabled = false;
-        fuseCol.enabled = false;
+        fusePulled = false;
+    }
+
+    public void IsFuseEnabled(bool inBool)
+    {
+        grab.enabled = inBool;
+        fuseCol.enabled = inBool;
 
     }
 
-    void EnableCannonPivot()
+    public void EnableCannonPivot()
     {
         knob.enabled = true;
 

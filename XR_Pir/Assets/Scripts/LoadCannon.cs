@@ -8,20 +8,20 @@ public class LoadCannon : MonoBehaviour
     public bool isLoaded { get; set; }
     GameObject thisCannonball;
 
-    bool hasPlayed = false;       // checking for audio played before
+    bool hasPlayed = false;
 
     private void Start()
     {
         isLoaded = false;
-
     }
 
     private void Update()
     {
-        if (isLoaded)
+        // only set position when ball is loaded
+        if (isLoaded && thisCannonball != null)
         {
             thisCannonball.transform.position = ballPoint.position;
-
+            thisCannonball.transform.rotation = ballPoint.rotation;
         }
     }
 
@@ -38,7 +38,6 @@ public class LoadCannon : MonoBehaviour
             {
                 grab.enabled = false;
 
-                //// audio for putting cannonball in cannon
                 if (!hasPlayed)
                 {
                     GameStateManager.Instance.CannonballPickedUp();
@@ -46,18 +45,25 @@ public class LoadCannon : MonoBehaviour
                 }
             }
 
-            thisCannonball.GetComponent<Rigidbody>().isKinematic = true;
-            thisCannonball.GetComponent<Collider>().enabled = false;
-            FindObjectOfType<AudioManager>().AudioTrigger(AudioManager.SoundFXCat.CannonLoad, transform.position, 0.6f);
+            Rigidbody rb = thisCannonball.GetComponent<Rigidbody>();
+            rb.isKinematic = true;
 
+            Collider ballCol = thisCannonball.GetComponent<Collider>();
+            if (ballCol != null) ballCol.enabled = false;
+
+
+            FindObjectOfType<AudioManager>().AudioTrigger(AudioManager.SoundFXCat.CannonLoad, transform.position, 0.6f);
         }
     }
-
-
 
     public GameObject GetCannonBall()
     {
         return thisCannonball;
     }
 
+    public void UnloadCannonball()
+    {
+        thisCannonball = null;
+        isLoaded = false;
+    }
 }

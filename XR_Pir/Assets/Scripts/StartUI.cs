@@ -7,7 +7,7 @@ public class StartUI : MonoBehaviour
 {
     [Header("Scene References")]
     [SerializeField] GameObject startUI;
-    [SerializeField] GameObject locoTurn, locoMove, lNearFarInteractor, rNearFarInteractor;
+    [SerializeField] GameObject locoTurn, locoMove, lNearFarInteractor, rNearFarInteractor, lControllerCanvas, rControllerCanvas;
     [SerializeField] Animator menuFadeAnim;
 
     [Header("Input References for Game Start")]
@@ -43,6 +43,10 @@ public class StartUI : MonoBehaviour
             lNearFarInteractor.SetActive(true);
             rNearFarInteractor.SetActive(true);
 
+            //show controller help canvases
+            lControllerCanvas.SetActive(true);
+            rControllerCanvas.SetActive(true);
+
             //set game state to playing
             StartCoroutine(GameStateManager.Instance.SceneLoaded());
         }
@@ -61,6 +65,9 @@ public class StartUI : MonoBehaviour
 
         lNearFarInteractor.SetActive(false);
         rNearFarInteractor.SetActive(false);
+
+        lControllerCanvas.SetActive(false);
+        rControllerCanvas.SetActive(false);
 
         startUI.SetActive(true);
 
