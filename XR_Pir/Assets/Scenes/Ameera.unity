@@ -4070,7 +4070,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6830879038111881590, guid: 1e851ec639bd90546a1c4abc878d2776, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.539
+      value: 6.485
       objectReference: {fileID: 0}
     - target: {fileID: 6830879038111881590, guid: 1e851ec639bd90546a1c4abc878d2776, type: 3}
       propertyPath: m_LocalPosition.z
@@ -10800,7 +10800,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6830879038111881590, guid: 1e851ec639bd90546a1c4abc878d2776, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.377
+      value: 6.391
       objectReference: {fileID: 0}
     - target: {fileID: 6830879038111881590, guid: 1e851ec639bd90546a1c4abc878d2776, type: 3}
       propertyPath: m_LocalPosition.z
@@ -14094,7 +14094,7 @@ Transform:
   m_GameObject: {fileID: 1819385002}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -41.724293, y: 9.573, z: 102.56997}
+  m_LocalPosition: {x: -41.724293, y: 9.415, z: 102.56997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -16094,9 +16094,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 108145435}
-  wheelTransform: {fileID: 109741181}
+  wheelTransform: {fileID: 859886871}
   rotationThreshold: 10
-  wheelAffordance: {fileID: 102832170}
+  wheelAffordance: {fileID: 532408557}
   wheelArrow: {fileID: 1819385002}
   limitMovementColliders: {fileID: 192765967}
   collidersInactive: 0
