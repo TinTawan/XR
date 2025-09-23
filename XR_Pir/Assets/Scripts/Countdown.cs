@@ -19,7 +19,8 @@ public class Countdown : MonoBehaviour
     [SerializeField] Animator endgameUIAnim;
     [SerializeField] MeshRenderer yButtonMeshRend;
     [SerializeField] GameObject locoTurn, locoMove;
-    [SerializeField] GameObject[] shipItems;
+    [Tooltip("Array of gameobjects to hide renderers after the game finishes")] [SerializeField] GameObject[] shipItems;
+    GameObject telescope;
 
     void Start()
     {
@@ -100,6 +101,8 @@ public class Countdown : MonoBehaviour
 
         locoTurn.SetActive(false);
         locoMove.SetActive(false);
+
+        GetComponent<MenuTrigger>().spyglassObject.SetActive(false);
 
     }
 
