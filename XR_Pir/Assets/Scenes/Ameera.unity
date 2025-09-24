@@ -9382,7 +9382,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c4532367f2e11504f948b373504fca9c, type: 2}
+  - {fileID: 2100000, guid: 49d6143988d449643820ccc608eaa399, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -11686,6 +11686,18 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5259378347601460889, guid: e95438d97b7e4014f804061dbb2106fd, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5259378347601460889, guid: e95438d97b7e4014f804061dbb2106fd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 76013bd23fe14f3449cd53af3b1ca58a, type: 2}
+    - target: {fileID: 5259378347601460889, guid: e95438d97b7e4014f804061dbb2106fd, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 76013bd23fe14f3449cd53af3b1ca58a, type: 2}
     - target: {fileID: 5707216704929237016, guid: e95438d97b7e4014f804061dbb2106fd, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -11750,6 +11762,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7540559207928005860, guid: e95438d97b7e4014f804061dbb2106fd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 76013bd23fe14f3449cd53af3b1ca58a, type: 2}
     - target: {fileID: 7552933894688688095, guid: e95438d97b7e4014f804061dbb2106fd, type: 3}
       propertyPath: m_Name
       value: Hull
