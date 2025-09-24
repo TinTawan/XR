@@ -1,29 +1,9 @@
 fileFormatVersion: 2
-guid: e95438d97b7e4014f804061dbb2106fd
+guid: 591c554c3b3d17a418850108fcb7bc36
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material.001
-    second: {fileID: 2100000, guid: 2894783d437727b4f97c778f1d633c92, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material.002
-    second: {fileID: 2100000, guid: 76013bd23fe14f3449cd53af3b1ca58a, type: 2}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: flag
-    second: {fileID: 2800000, guid: 9d3dbc1893cb0be4b8403b1f014d0c42, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: royalnavyflag
-    second: {fileID: 2800000, guid: 130d526da13d37b4c9b86e72ff157464, type: 3}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0

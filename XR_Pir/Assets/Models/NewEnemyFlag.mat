@@ -9,9 +9,12 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: NewEnemyFlag
   m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
-  m_Parent: {fileID: -6478536213147159724, guid: e95438d97b7e4014f804061dbb2106fd, type: 3}
+  m_Parent: {fileID: 2100000, guid: 2894783d437727b4f97c778f1d633c92, type: 2}
   m_ModifiedSerializedProperties: 8
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - _ENVIRONMENTREFLECTIONS_OFF
+  - _RECEIVE_SHADOWS_OFF
+  - _SPECULARHIGHLIGHTS_OFF
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -24,10 +27,14 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _BaseMap:
+        m_Texture: {fileID: 2800000, guid: 3c2e4e8d59e14c54cb5d9067730cdca7, type: 3}
+        m_Scale: {x: 0.9, y: 0.87}
+        m_Offset: {x: 1.02, y: 0.05}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 130d526da13d37b4c9b86e72ff157464, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
+        m_Texture: {fileID: 2800000, guid: 3c2e4e8d59e14c54cb5d9067730cdca7, type: 3}
+        m_Scale: {x: 0.9, y: 0.87}
+        m_Offset: {x: 1.02, y: 0.05}
     m_Ints: []
     m_Floats:
     - _Cull: 0
