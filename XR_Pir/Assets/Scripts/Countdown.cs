@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -20,7 +21,7 @@ public class Countdown : MonoBehaviour
     [SerializeField] MeshRenderer yButtonMeshRend;
     [SerializeField] GameObject locoTurn, locoMove;
     [Tooltip("Array of gameobjects to hide renderers after the game finishes")] [SerializeField] GameObject[] shipItems;
-    [Tooltip("Array of gameobjects to set inactive after the game finishes")] [SerializeField] GameObject[] interactableObjects;
+    [Tooltip("List of gameobjects to set inactive after the game finishes")] [SerializeField] List<GameObject> interactableObjects = new();
 
     void Start()
     {
@@ -93,15 +94,25 @@ public class Countdown : MonoBehaviour
 
     void EndOfGame()
     {
+        //fade end ui in
         endGameUIObject.SetActive(true);
         endgameUIAnim.Play("EndUIFade");
         yButtonMeshRend.material.color = Color.yellow;
 
+        //hide renderers for the ship objects
         Invoke(nameof(HideShip), 1.25f);
 
+        //disable movement and turning
         locoTurn.SetActive(false);
         locoMove.SetActive(false);
 
+        //set interactables inactive (including all cannonballs)
+        GameObject[] cannonballs = GameObject.FindGameObjectsWithTag("CannonBall");
+        foreach (GameObject cb in cannonballs)
+        {
+            interactableObjects.Add(cb);
+        }
+        Invoke(nameof(HideInteractables), .5f);
 
     }
 
