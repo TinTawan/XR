@@ -31,6 +31,12 @@ public class FallenOffShipRespawn : MonoBehaviour
 
         }
 
+        if (col.CompareTag("Interactable"))
+        {
+            StartCoroutine(Respawn(col.transform.gameObject, respawnTime));
+
+        }
+
     }
 
     IEnumerator Respawn(GameObject go, float respawnTime)
