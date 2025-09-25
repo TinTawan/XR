@@ -123,7 +123,7 @@ public class Telescope : MonoBehaviour
                 mr.enabled = false;
             }
 
-            telescopeGrab = telescope.GetComponentInParent<XRGrabInteractable>();
+            /*telescopeGrab = telescope.GetComponentInParent<XRGrabInteractable>();
 
             if (telescopeGrab.TryGetComponent(out IXRSelectInteractable select))
             {
@@ -135,7 +135,7 @@ public class Telescope : MonoBehaviour
                     GameStateManager.Instance.TelescopePicked(); // Play pickup audio only once
                     StartCoroutine(PlayShipSpottedAudio());
                 }
-            }
+            }*/
 
 
             StartCoroutine(AppertureZoomIn(0.05f));
@@ -222,10 +222,29 @@ public class Telescope : MonoBehaviour
 
     }
 
+    public void PickedUpTelescopeAudio()
+    {
+        //telescopeGrab = telescope.GetComponentInParent<XRGrabInteractable>();
+        telescopeGrab = GameObject.FindGameObjectWithTag("Telescope").GetComponentInParent<XRGrabInteractable>();
+
+        if (telescopeGrab.TryGetComponent(out IXRSelectInteractable select))
+        {
+            telescopeInteractable = select;
+
+            if (!hasPlayed)
+            {
+                hasPlayed = true;
+                GameStateManager.Instance.TelescopePicked(); // Play pickup audio only once
+                StartCoroutine(PlayShipSpottedAudio());
+            }
+        }
+    }
+
     IEnumerator PlayShipSpottedAudio()
     {
         yield return new WaitForSeconds(10f);
         GameStateManager.Instance.ShipSpotted();
     }
+
 
 }

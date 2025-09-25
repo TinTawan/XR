@@ -8,6 +8,7 @@ TagManager:
   - Telescope
   - CannonBall
   - Destroyable
+  - Interactable
   layers:
   - Default
   - TransparentFX

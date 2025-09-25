@@ -31,6 +31,12 @@ public class FallenOffShipRespawn : MonoBehaviour
 
         }
 
+        if (col.CompareTag("Interactable"))
+        {
+            StartCoroutine(Respawn(col.transform.gameObject, respawnTime));
+
+        }
+
     }
 
     IEnumerator Respawn(GameObject go, float respawnTime)
@@ -38,9 +44,13 @@ public class FallenOffShipRespawn : MonoBehaviour
         yield return new WaitForSeconds(respawnTime);
         StartCoroutine(AppertureZoomOut(0.1f));
 
+        if(go.TryGetComponent(out Rigidbody rb))
+        {
+            rb.velocity = Vector3.zero;
+        }
+
         yield return new WaitForEndOfFrame();
         go.transform.position = respawnPoint.position;
-
 
     }
 
