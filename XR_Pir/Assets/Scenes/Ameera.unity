@@ -2824,6 +2824,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3765292595329263890, guid: ab00dd2908e0fee4799c5dcf0d1276c4, type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3765292595329263890, guid: ab00dd2908e0fee4799c5dcf0d1276c4, type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3765292595329263890, guid: ab00dd2908e0fee4799c5dcf0d1276c4, type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 220965762}
+    - target: {fileID: 3765292595329263890, guid: ab00dd2908e0fee4799c5dcf0d1276c4, type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3765292595329263890, guid: ab00dd2908e0fee4799c5dcf0d1276c4, type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PickedUpTelescopeAudio
+      objectReference: {fileID: 0}
+    - target: {fileID: 3765292595329263890, guid: ab00dd2908e0fee4799c5dcf0d1276c4, type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Telescope, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3765292595329263890, guid: ab00dd2908e0fee4799c5dcf0d1276c4, type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7413855840902347708, guid: ab00dd2908e0fee4799c5dcf0d1276c4, type: 3}
       propertyPath: m_Name
       value: Telescope
@@ -2868,7 +2896,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4907715119596554321, guid: ab00dd2908e0fee4799c5dcf0d1276c4, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -11925,6 +11954,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1253337310 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3502931240411889385, guid: c9ad5711dad274942bf36c2203ce599f, type: 3}
+  m_PrefabInstance: {fileID: 1687623521}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1319321579
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13941,6 +13975,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1650633688}
   m_LocalEulerAnglesHint: {x: -0.43, y: 188.639, z: 5.406}
+--- !u!1 &1554553850 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2809142426020081671, guid: 35fdfc696fa16aa48a9c4cbbaa4f054e, type: 3}
+  m_PrefabInstance: {fileID: 1183649274}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1556189145
 GameObject:
   m_ObjectHideFlags: 0
@@ -17625,6 +17664,10 @@ MonoBehaviour:
   - {fileID: 1012294556}
   - {fileID: 40463045}
   - {fileID: 911239988}
+  interactableObjects:
+  - {fileID: 715425371}
+  - {fileID: 1253337310}
+  - {fileID: 1554553850}
 --- !u!1 &1998221361
 GameObject:
   m_ObjectHideFlags: 0
